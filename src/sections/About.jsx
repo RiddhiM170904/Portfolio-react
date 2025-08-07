@@ -1,13 +1,12 @@
-import React from 'react';
 
 const About = () => {
   const skills = [
-    { name: 'UI Design', percentage: 95 },
-    { name: 'UX Research', percentage: 90 },
-    { name: 'Prototyping', percentage: 88 },
-    { name: 'User Testing', percentage: 85 },
-    { name: 'Figma', percentage: 95 },
-    { name: 'Adobe XD', percentage: 90 },
+    { name: 'C++', percentage: 95 },
+    { name: 'Full Stack Development', percentage: 60 },
+    { name: 'Canva & Figma', percentage: 80 },
+    { name: 'Java', percentage: 50 },
+    { name: 'Python', percentage: 45 },
+    { name: 'Web Designing', percentage: 65 },
   ];
 
   const experiences = [
@@ -31,6 +30,15 @@ const About = () => {
     },
   ];
 
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/riddhinew.pdf'; // Path to your resume file
+    link.download = 'riddhinew.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section id="about" className="py-20 bg-dark-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,19 +54,20 @@ const About = () => {
           {/* Left Content */}
           <div>
             <h3 className="text-2xl font-bold mb-6 text-primary-400">
-              Welcome to my portfolio<br />
+              Welcome to my portfolio
             </h3>
             <p className="text-gray-300 text-lg leading-relaxed mb-6">
-              I’m a passionate and curious learner, deeply interested in the ever-evolving world of technology. My journey in computer science so far has been driven by a strong enthusiasm for problem-solving, building real-world applications, and constantly improving my technical and creative skill set.
+              I'm a passionate and curious learner, deeply interested in the ever-evolving world of technology. My journey in computer science so far has been driven by a strong enthusiasm for problem-solving, building real-world applications, and constantly improving my technical and creative skill set.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed mb-8">
-              Currently, I’m diving deeper into web development, exploring both frontend and backend technologies to build clean, responsive, and user-focused experiences. Alongside this, I’m actively strengthening my foundation in Data Structures and Algorithms to enhance my analytical thinking and coding efficiency.
-
-This portfolio showcases some of the projects, skills, and experiences that reflect my growth as a developer. I believe in continuous learning, collaboration, and the power of technology to make a difference. Whether it's creating impactful solutions, contributing to innovative teams, or simply sharing ideas — I’m always eager to take on new challenges.
+              Currently, I'm diving deeper into web development, exploring both frontend and backend technologies to build clean, responsive, and user-focused experiences. Alongside this, I'm actively strengthening my foundation in Data Structures and Algorithms to enhance my analytical thinking and coding efficiency.
             </p>
-            <h3 className="text-2xl font-bold mb-6 text-primary-400">
-              Thank you for stopping by — let’s connect and build something amazing together!
-            </h3>
+            <p className="text-gray-300 text-lg leading-relaxed mb-8">
+              This portfolio showcases some of the projects, skills, and experiences that reflect my growth as a developer. I believe in continuous learning, collaboration, and the power of technology to make a difference. Whether it's creating impactful solutions, contributing to innovative teams, or simply sharing ideas — I'm always eager to take on new challenges.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mb-8">
+              Thank you for stopping by — let's connect and build something amazing together!
+            </p>
 
             {/* Skills */}
             <div className="mb-8">
@@ -133,7 +142,10 @@ This portfolio showcases some of the projects, skills, and experiences that refl
 
             {/* Download CV Button */}
             <div className="mt-8">
-              <button className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-200 transform hover:scale-105 flex items-center gap-2">
+              <button
+                onClick={handleDownload}
+                className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-200 transform hover:scale-105 flex items-center gap-2"
+              >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const Services = () => {
   const services = [
     {
@@ -99,7 +100,7 @@ const Services = () => {
           <p className="text-gray-300 text-lg mb-8">
             Ready to start your project? Let's work together to create something amazing.
           </p>
-          <button className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-200 transform hover:scale-105 text-lg">
+          <button className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-200 transform hover:scale-105 text-lg" >
             Get Started Today
           </button>
         </div>
