@@ -12,22 +12,22 @@ const About = () => {
 
   const experiences = [
     {
-      year: '2023 - Present',
-      title: 'Senior UI/UX Designer',
-      company: 'TechCorp Inc.',
-      description: 'Leading design team for enterprise applications and mobile products.'
+      year: '2023 - 2027',
+      title: 'Bachelor of Technology - Computer Science',
+      company: 'Vellore Institute of Technology, Bhopal',
+      description: 'CGPA - 8.94'
     },
     {
-      year: '2021 - 2023',
-      title: 'UI/UX Designer',
-      company: 'DesignStudio',
-      description: 'Designed user interfaces for various web and mobile applications.'
+      year: '2021 - 2022',
+      title: '12th SENIOR SECONDARY SCHOOL EXAMINATION',
+      company: 'Central Board of Secondary Education (CBSE)',
+      description: 'Percentage - 87%'
     },
     {
-      year: '2019 - 2021',
-      title: 'Junior Designer',
-      company: 'StartupXYZ',
-      description: 'Worked on user experience research and interface design.'
+      year: '2019 - 2020',
+      title: '10th SECONDARY SCHOOL EXAMINATION',
+      company: 'Central Board of Secondary Education (CBSE)',
+      description: 'Percentage - 95%'
     },
   ];
 
@@ -46,20 +46,19 @@ const About = () => {
           {/* Left Content */}
           <div>
             <h3 className="text-2xl font-bold mb-6 text-primary-400">
-              Welcome to my portfolio
+              Welcome to my portfolio<br />
             </h3>
             <p className="text-gray-300 text-lg leading-relaxed mb-6">
-              I'm Sara Howari, a passionate UI/UX designer with over 5 years of experience 
-              creating digital experiences that users love. I specialize in crafting intuitive 
-              interfaces and conducting thorough user research to ensure every design decision 
-              is backed by data and user needs.
+              I’m a passionate and curious learner, deeply interested in the ever-evolving world of technology. My journey in computer science so far has been driven by a strong enthusiasm for problem-solving, building real-world applications, and constantly improving my technical and creative skill set.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed mb-8">
-              My approach combines creativity with analytical thinking, always keeping the user 
-              at the center of the design process. I believe great design should be both 
-              beautiful and functional, creating seamless experiences that delight users 
-              while achieving business goals.
+              Currently, I’m diving deeper into web development, exploring both frontend and backend technologies to build clean, responsive, and user-focused experiences. Alongside this, I’m actively strengthening my foundation in Data Structures and Algorithms to enhance my analytical thinking and coding efficiency.
+
+This portfolio showcases some of the projects, skills, and experiences that reflect my growth as a developer. I believe in continuous learning, collaboration, and the power of technology to make a difference. Whether it's creating impactful solutions, contributing to innovative teams, or simply sharing ideas — I’m always eager to take on new challenges.
             </p>
+            <h3 className="text-2xl font-bold mb-6 text-primary-400">
+              Thank you for stopping by — let’s connect and build something amazing together!
+            </h3>
 
             {/* Skills */}
             <div className="mb-8">
@@ -86,26 +85,26 @@ const About = () => {
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <p className="text-gray-400 mb-1">Email</p>
-                <p className="text-white font-medium">sara@example.com</p>
+                <p className="text-white font-medium">riddhimhadgut17@gmail.com</p>
               </div>
               <div>
                 <p className="text-gray-400 mb-1">Phone</p>
-                <p className="text-white font-medium">+1 (555) 123-4567</p>
+                <p className="text-white font-medium">+91-910935647</p>
               </div>
               <div>
                 <p className="text-gray-400 mb-1">Location</p>
-                <p className="text-white font-medium">New York, USA</p>
+                <p className="text-white font-medium">Dewas, India</p>
               </div>
               <div>
                 <p className="text-gray-400 mb-1">Experience</p>
-                <p className="text-white font-medium">5+ Years</p>
+                <p className="text-white font-medium">3+ Years</p>
               </div>
             </div>
           </div>
 
           {/* Right Content - Experience Timeline */}
           <div>
-            <h3 className="text-2xl font-bold mb-8 text-white">Experience</h3>
+            <h3 className="text-2xl font-bold mb-8 text-white">Education</h3>
             <div className="space-y-8">
               {experiences.map((exp, index) => (
                 <div key={index} className="relative">

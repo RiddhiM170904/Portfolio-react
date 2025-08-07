@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaInstagram, FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 
 const Hero = () => {
   const socialLinks = [
