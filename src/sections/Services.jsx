@@ -3,22 +3,22 @@ import React from 'react';
 const Services = () => {
   const services = [
     {
-      icon: '🎨',
-      title: 'UI Design',
-      description: 'Creating beautiful and intuitive user interfaces that engage users and enhance their experience.',
-      features: ['Visual Design', 'Design Systems', 'Style Guides', 'Responsive Design']
+      icon: '🌐',
+      title: 'Frontend Development',
+      description: 'Translating designs into functional and responsive websites using modern tools.',
+      features: ['React.js Frontend Development', 'TailwindCSS Styling', 'Responsive Web Layouts', 'Basic Animation & Interactions']
     },
     {
-      icon: '🔍',
-      title: 'UX Research',
-      description: 'Conducting thorough user research to understand user needs and behavior patterns.',
-      features: ['User Interviews', 'Usability Testing', 'User Personas', 'Journey Mapping']
+      icon: '🌍',
+      title: 'Open Source Design Contributions',
+      description: 'Contributing to real-world open-source projects with clean, community-driven designs.',
+      features: ['UI/UX for Open Source Tools', 'Figma Mockups for Projects', 'Collaboration with Dev Teams (GSSoC, Hacktoberfest)']
     },
     {
-      icon: '📱',
-      title: 'Mobile Design',
-      description: 'Designing mobile-first experiences that work seamlessly across all devices and platforms.',
-      features: ['iOS Design', 'Android Design', 'Cross-platform', 'Touch Interactions']
+      icon: '🧠',
+      title: 'DSA & Coding',
+      description: 'Solving complex algorithmic challenges and building DSA skills.',
+      features: ['Leetcode, Codeforces, GFG, HackerRank', 'Arrays, Strings, Trees, Graphs, DP, etc.', 'Problem-Solving (Beginner to Intermediate)', 'Concept Explanation with Code Examples']
     },
     {
       icon: '🌐',
@@ -27,16 +27,16 @@ const Services = () => {
       features: ['Responsive Web', 'Landing Pages', 'E-commerce', 'Dashboard Design']
     },
     {
-      icon: '🎯',
-      title: 'Product Strategy',
-      description: 'Helping define product vision and strategy through user-centered design thinking.',
-      features: ['Product Vision', 'Feature Planning', 'Competitive Analysis', 'Design Strategy']
+      icon: '🏆',
+      title: 'Hackathon Experience',
+      description: 'Applying design and coding skills to real-world problem statements.',
+      features: ['🥇 Smart India Hackathon 2024 – Internal Hackathon Winning Team', 'Fast-paced UI/UX Design + Frontend Implementation', 'Ideation, Collaboration & Final Pitching', 'Creating Scalable, User-Focused Prototypes']
     },
     {
-      icon: '🚀',
-      title: 'Prototyping',
-      description: 'Building interactive prototypes to test and validate design concepts before development.',
-      features: ['Interactive Prototypes', 'Wireframing', 'User Flows', 'Concept Validation']
+      icon: '🎨',
+      title: 'UI/UX Design',
+      description: 'Designing clean, intuitive, and accessible user interfaces.',
+      features: ['Figma UI Design (Mobile & Web)', 'Design Systems & Style Guides', 'Wireframing & User Flow Mapping', 'Responsive Layout Planning']
     }
   ];
 
