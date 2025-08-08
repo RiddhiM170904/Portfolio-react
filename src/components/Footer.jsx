@@ -40,9 +40,9 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">S</span>
+                <span className="text-white font-bold text-xl">R</span>
               </div>
-              <span className="ml-3 text-xl font-bold text-white">Sara Howari</span>
+              <span className="ml-3 text-xl font-bold text-white">Riddhi Mhadgut</span>
             </div>
             
             <p className="text-gray-300 text-lg leading-relaxed mb-6 max-w-md">
@@ -55,7 +55,7 @@ const Footer = () => {
               {[
                 { icon: '📷', name: 'Instagram' },
                 { icon: '💼', name: 'LinkedIn' },
-                { icon: '🐦', name: 'Twitter' },
+                { icon: '📧', name: 'Gmail' },
                 { icon: '👨‍💻', name: 'GitHub' }
               ].map((social, index) => (
                 <a

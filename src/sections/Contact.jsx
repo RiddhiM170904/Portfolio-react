@@ -81,9 +81,7 @@ const Contact = () => {
           <div>
             <h3 className="text-2xl font-bold text-white mb-6">Let's Talk</h3>
             <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-              I'm always excited to work on new projects and help businesses create 
-              exceptional digital experiences. Whether you need UI/UX design, product 
-              strategy, or design consulting, I'm here to help.
+              I’m always eager to collaborate on innovative tech projects and help bring meaningful digital solutions to life. Whether you need intuitive UI/UX design, smart web development, or strategic support for tech initiatives, I’m here to help. From building responsive interfaces to solving real-world problems through code, I’m passionate about crafting impactful digital experiences.
             </p>
 
             {/* Contact Info Cards */}
@@ -157,7 +155,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-dark-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
-                    placeholder="John Doe"
+                    placeholder="Enter Your Name"
                   />
                 </div>
                 
@@ -173,7 +171,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-dark-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
-                    placeholder="john@example.com"
+                    placeholder="Enter Your Email Id"
                   />
                 </div>
               </div>
@@ -190,7 +188,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-dark-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
-                  placeholder="Project Discussion"
+                  placeholder="Enter Your Subject"
                 />
               </div>
 
