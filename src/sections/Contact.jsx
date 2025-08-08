@@ -33,26 +33,32 @@ const Contact = () => {
     {
       icon: '📧',
       title: 'Email',
-      value: 'sara@example.com',
+      value: 'riddhimhadgut17.com',
       description: 'Send me an email anytime'
     },
     {
       icon: '📱',
       title: 'Phone',
-      value: '+1 (555) 123-4567',
+      value: '+91-9109356746',
       description: 'Call me for urgent matters'
     },
     {
       icon: '📍',
       title: 'Location',
-      value: 'New York, USA',
+      value: 'Dewas, India',
       description: 'Available for local meetings'
     },
     {
       icon: '💼',
       title: 'LinkedIn',
-      value: '/in/sara-howari',
+      value: 'Username - Riddhi Mhadgut',
       description: 'Connect with me professionally'
+    },
+    {
+      icon: '💻',
+      title: 'GitHub',
+      value: 'Username- RiddhiM170904',
+      description: 'Check out my code and projects'
     }
   ];
 
@@ -87,10 +93,30 @@ const Contact = () => {
                   <div className="w-12 h-12 bg-primary-500/20 rounded-lg flex items-center justify-center text-2xl flex-shrink-0">
                     {info.icon}
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h4 className="text-white font-semibold mb-1">{info.title}</h4>
                     <p className="text-primary-400 font-medium mb-1">{info.value}</p>
-                    <p className="text-gray-400 text-sm">{info.description}</p>
+                    <p className="text-gray-400 text-sm mb-2">{info.description}</p>
+                    {info.title === 'LinkedIn' && (
+                      <a
+                        href="https://www.linkedin.com/in/riddhi-mhadgut-3b0a21289/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                      >
+                        See Profile
+                      </a>
+                    )}
+                    {info.title === 'GitHub' && (
+                      <a
+                        href="https://github.com/RiddhiM170904"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                      >
+                        See Profile
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}

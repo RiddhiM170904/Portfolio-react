@@ -104,6 +104,180 @@ const Services = () => {
             Get Started Today
           </button>
         </div>
+
+        {/* Additional Resume Sections */}
+        <div className="mt-20 space-y-16">
+          {/* Achievements & Recognition */}
+          <div className="text-center">
+            <h3 className="text-3xl font-bold text-white mb-8">
+              Achievements & <span className="text-primary-400">Recognition</span>
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: '🏆',
+                  title: 'Academic Excellence',
+                  description: 'Maintained 8.94 CGPA in Computer Science',
+                  color: 'from-yellow-400 to-orange-500'
+                },
+                {
+                  icon: '💡',
+                  title: 'Problem Solver',
+                  description: 'Solved 100+ coding problems on various platforms',
+                  color: 'from-blue-400 to-cyan-500'
+                },
+                {
+                  icon: '🎯',
+                  title: 'Project Innovation',
+                  description: 'Developed 10+ real-world applications',
+                  color: 'from-green-400 to-emerald-500'
+                },
+                {
+                  icon: '🌟',
+                  title: 'Leadership',
+                  description: 'Led multiple team projects and collaborations',
+                  color: 'from-purple-400 to-pink-500'
+                },
+                {
+                  icon: '🚀',
+                  title: 'Tech Enthusiast',
+                  description: 'Always learning cutting-edge technologies',
+                  color: 'from-red-400 to-rose-500'
+                },
+                {
+                  icon: '🎨',
+                  title: 'Creative Designer',
+                  description: 'Expert in UI/UX design with Figma & Canva',
+                  color: 'from-indigo-400 to-blue-500'
+                }
+              ].map((achievement, index) => (
+                <div key={index} className="glass-effect p-6 rounded-xl hover:scale-105 transition-all duration-300">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${achievement.color} rounded-full flex items-center justify-center text-2xl mx-auto mb-4`}>
+                    {achievement.icon}
+                  </div>
+                  <h4 className="text-xl font-semibold text-white mb-2">{achievement.title}</h4>
+                  <p className="text-gray-300">{achievement.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Certifications & Learning */}
+          <div className="text-center">
+            <h3 className="text-3xl font-bold text-white mb-8">
+              Certifications & <span className="text-primary-400">Learning</span>
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  icon: '📜',
+                  title: 'Web Development Foundations',
+                  provider: 'Self-Directed Learning',
+                  status: 'Completed',
+                  color: 'border-green-400'
+                },
+                {
+                  icon: '💻',
+                  title: 'Full Stack Development',
+                  provider: 'Online Courses & Projects',
+                  status: 'In Progress',
+                  color: 'border-blue-400'
+                },
+                {
+                  icon: '🎯',
+                  title: 'Data Structures & Algorithms',
+                  provider: 'Competitive Programming',
+                  status: 'Advanced',
+                  color: 'border-purple-400'
+                },
+                {
+                  icon: '🎨',
+                  title: 'UI/UX Design Principles',
+                  provider: 'Figma & Canva Mastery',
+                  status: 'Certified',
+                  color: 'border-pink-400'
+                }
+              ].map((cert, index) => (
+                <div key={index} className={`glass-effect p-6 rounded-xl border-l-4 ${cert.color} hover:scale-105 transition-all duration-300`}>
+                  <div className="flex items-center mb-4">
+                    <span className="text-3xl mr-4">{cert.icon}</span>
+                    <div>
+                      <h4 className="text-xl font-semibold text-white">{cert.title}</h4>
+                      <p className="text-primary-300">{cert.provider}</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-300">Status:</span>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                      cert.status === 'Completed' ? 'bg-green-500/20 text-green-300' :
+                      cert.status === 'In Progress' ? 'bg-blue-500/20 text-blue-300' :
+                      cert.status === 'Advanced' ? 'bg-purple-500/20 text-purple-300' :
+                      'bg-pink-500/20 text-pink-300'
+                    }`}>
+                      {cert.status}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Interests & Hobbies */}
+          <div className="text-center">
+            <h3 className="text-3xl font-bold text-white mb-8">
+              Interests & <span className="text-primary-400">Passions</span>
+            </h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {[
+                { name: 'Competitive Programming', icon: '⚡' },
+                { name: 'Open Source', icon: '🌐' },
+                { name: 'Tech Blogs', icon: '📚' },
+                { name: 'UI/UX Design', icon: '🎨' },
+                { name: 'Machine Learning', icon: '🤖' },
+                { name: 'Web Technologies', icon: '💻' },
+                { name: 'Problem Solving', icon: '🧩' },
+                { name: 'Innovation', icon: '💡' },
+                { name: 'Team Collaboration', icon: '🤝' },
+                { name: 'Continuous Learning', icon: '📈' }
+              ].map((interest, index) => (
+                <div key={index} className="glass-effect px-6 py-3 rounded-full hover:scale-110 transition-all duration-300 cursor-default">
+                  <span className="text-lg mr-2">{interest.icon}</span>
+                  <span className="text-white font-medium">{interest.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Availability & Status */}
+          <div className="glass-effect p-8 rounded-2xl text-center">
+            <h3 className="text-3xl font-bold text-white mb-6">
+              Current <span className="text-primary-400">Status</span>
+            </h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center text-3xl mb-4">
+                  🟢
+                </div>
+                <h4 className="text-xl font-semibold text-white mb-2">Available for Work</h4>
+                <p className="text-gray-300">Open to internships and entry-level positions</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center text-3xl mb-4">
+                  🎓
+                </div>
+                <h4 className="text-xl font-semibold text-white mb-2">Currently Studying</h4>
+                <p className="text-gray-300">B.Tech Computer Science at VIT Bhopal</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center text-3xl mb-4">
+                  💼
+                </div>
+                <h4 className="text-xl font-semibold text-white mb-2">Seeking Opportunities</h4>
+                <p className="text-gray-300">Internships, projects, and collaborations</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Background Decoration */}

@@ -5,6 +5,7 @@ import swasthyaproject from '/projects/swasthya.png';
 import smartflowproject from '/projects/smartflow.png';
 import wastesortproject from '/projects/wastesort.png';
 import hundredDaysproject from '/projects/konkan.png';
+import simhastha from '/projects/simhastha.png';
 const Projects = () => {
     const [activeFilter, setActiveFilter] = useState('all');
 
@@ -112,7 +113,7 @@ const Projects = () => {
             title: 'Simhastha Saarthi',
             category: 'branding',
             description: 'Comprehensive design system for a spiritual and cultural event management platform with modern aesthetics.',
-            image: '/api/placeholder/400/300',
+            image: simhastha,
             tags: ['UI/UX', 'Cultural', 'Event Management'],
             year: '2024',
             client: 'Design Project',
@@ -146,7 +147,7 @@ const Projects = () => {
                         My <span className="text-primary-400">Projects</span>
                     </h2>
                     <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-                        Explore my latest work and see how I help businesses create amazing digital experiences
+                        Explore my latest work and see how I create amazing digital experiences
                     </p>
                     <div className="w-24 h-1 bg-primary-500 mx-auto mt-6"></div>
                 </div>

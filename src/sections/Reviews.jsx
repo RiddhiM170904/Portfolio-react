@@ -163,12 +163,15 @@ const Reviews = () => {
             <button
               key={index}
               onClick={() => setCurrentTestimonial(index)}
+              aria-label={`Go to testimonial ${index + 1}`}
               className={`w-3 h-3 rounded-full transition-all duration-200 ${
                 index === currentTestimonial 
                   ? 'bg-primary-500 w-8' 
                   : 'bg-gray-600 hover:bg-gray-500'
               }`}
-            />
+            >
+              <span className="sr-only">{`Go to testimonial ${index + 1}`}</span>
+            </button>
           ))}
         </div>
       </div>
