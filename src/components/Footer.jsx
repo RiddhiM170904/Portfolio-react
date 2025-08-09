@@ -46,8 +46,7 @@ const Footer = () => {
             </div>
             
             <p className="text-gray-300 text-lg leading-relaxed mb-6 max-w-md">
-              Passionate UI/UX designer creating intuitive and visually appealing digital 
-              experiences that users love and businesses need.
+              I’m a Computer Science and Engineering student passionate about web development, UI/UX design, and problem-solving through code. I enjoy building impactful digital solutions, participating in hackathons, and exploring AI-driven innovations.
             </p>
 
             {/* Social Links */}
@@ -128,7 +127,7 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="py-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {currentYear} Sara Howari. All rights reserved.
+            © {currentYear} Riddhi Mhadgut. All rights reserved.
           </div>
           
           <div className="flex items-center space-x-6">

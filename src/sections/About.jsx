@@ -35,7 +35,7 @@ const About = () => {
     { label: 'Projects Completed', value: '10+', icon: '🚀' },
     { label: 'Years of Learning', value: '3+', icon: '📚' },
     { label: 'Technologies', value: '15+', icon: '⚙️' },
-    { label: 'Coffee Cups', value: '1000+', icon: '☕' },
+    { label: 'Contributions', value: '370+', icon: '☕' },
   ];
 
   const experiences = [
