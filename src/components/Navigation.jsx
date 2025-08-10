@@ -37,7 +37,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <div className="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">S</span>
+              <span className="text-white font-bold text-lg">R</span>
             </div>
           </div>
 

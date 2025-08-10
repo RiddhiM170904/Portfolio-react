@@ -11,10 +11,64 @@ const Hero = () => {
     { name: 'LeetCode', icon: <SiLeetcode />, href: 'https://leetcode.com/u/Riddhi_Mhadgut/' },
     { name: 'Email', icon: <FaEnvelope />, href: 'mailto:riddhimhadgut17@gmail.com' },
   ];
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href);
+  const scrollToSection = (sectionId) => {
+    console.log('Attempting to scroll to:', sectionId); // Debug log
+    
+    // Remove the # if it exists
+    const id = sectionId.startsWith('#') ? sectionId.slice(1) : sectionId;
+    console.log('Looking for element with ID:', id); // Debug log
+    
+    // Try multiple methods to find the element
+    let element = document.getElementById(id);
+    if (!element) {
+      element = document.querySelector(`#${id}`);
+    }
+    if (!element) {
+      element = document.querySelector(`[id="${id}"]`);
+    }
+    
+    console.log('Found element:', element); // Debug log
+    
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Method 1: Using scrollIntoView
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      });
+      
+      // Backup method: Manual scroll calculation
+      setTimeout(() => {
+        const elementPosition = element.offsetTop - 100; // 100px offset for navigation
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }, 100);
+    } else {
+      console.error(`Element with ID "${id}" not found`);
+      // List all sections for debugging
+      console.log('Available sections:', 
+        Array.from(document.querySelectorAll('section')).map(s => s.id || s.className)
+      );
+    }
+  };
+
+  const handleDownloadCV = () => {
+    console.log('Download CV button clicked!'); // Debug log
+    try {
+      const link = document.createElement('a');
+      link.href = '/riddhinew.pdf'; // Path to your resume file
+      link.download = 'riddhinew.pdf';
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      console.log('CV download initiated'); // Debug log
+    } catch (error) {
+      console.error('Error downloading CV:', error);
+      // Fallback: open in new tab
+      window.open('/riddhinew.pdf', '_blank');
     }
   };
 
@@ -123,7 +177,10 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <motion.button
-                onClick={() => scrollToSection('#projects')}
+                onClick={() => {
+                  console.log('My Projects button clicked!'); // Debug log
+                  scrollToSection('projects'); // Remove the # since function handles it
+                }}
                 className="bg-white text-dark-900 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-all duration-200"
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(255,255,255,0.2)" }}
                 whileTap={{ scale: 0.95 }}
@@ -131,6 +188,10 @@ const Hero = () => {
                 My Projects
               </motion.button>
               <motion.button 
+                onClick={() => {
+                  console.log('Download CV button clicked!'); // Debug log
+                  handleDownloadCV();
+                }}
                 className="border border-white/30 text-white px-8 py-3 rounded-full font-medium hover:bg-white/10 transition-all duration-200"
                 whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.6)" }}
                 whileTap={{ scale: 0.95 }}
