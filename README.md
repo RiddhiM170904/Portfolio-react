@@ -1,23 +1,28 @@
-# Sara Howari - Portfolio Website
 
-A modern, responsive portfolio website built with React and Tailwind CSS, showcasing UI/UX design work and professional experience.
+# Riddhi Mhadgut - Portfolio Website
+
+
+A modern, responsive portfolio website built with React and Tailwind CSS, showcasing my projects, coding journey, open-source contributions, and design skills.
+
 
 ## ✨ Features
 
-- **Modern Design**: Clean, professional design with purple gradient theme
-- **Responsive**: Fully responsive design that works on all devices
-- **Smooth Animations**: Subtle animations and transitions for better UX
-- **Interactive Components**: Dynamic testimonial carousel, project filters, and smooth scrolling
-- **Contact Form**: Functional contact form for client inquiries
-- **SEO Optimized**: Structured content for better search engine visibility
+- **Modern Design**: Clean, professional design with a purple-accented theme
+- **Responsive**: Fully responsive for all devices
+- **Smooth Animations**: Subtle transitions and framer-motion effects
+- **Interactive Components**: Project filters, testimonials carousel, and more
+- **Contact Form**: Functional and validated contact form
+- **Showcase**: Real-world projects, hackathon experience, and open-source contributions
+
 
 ## 🚀 Tech Stack
 
 - **React 19** - Frontend framework
 - **Tailwind CSS** - Utility-first CSS framework
 - **Vite** - Build tool and development server
+- **Framer Motion** - Animations
 - **React Icons** - Icon library
-- **Modern CSS** - Custom animations and effects
+
 
 ## 📁 Project Structure
 
@@ -28,11 +33,11 @@ src/
 │   └── Footer.jsx       # Footer component
 ├── sections/           # Page sections
 │   ├── Hero.jsx        # Hero/landing section
-│   ├── About.jsx       # About me section
-│   ├── Services.jsx    # Services offered
-│   ├── Projects.jsx    # Portfolio projects
-│   ├── Reviews.jsx     # Client testimonials
-│   └── Contact.jsx     # Contact form
+│   ├── About.jsx       # About me, skills, stats
+│   ├── Services.jsx    # What I offer (dev, design, DSA, hackathons)
+│   ├── Projects.jsx    # Portfolio projects (web, group, UI/UX)
+│   ├── Reviews.jsx     # Testimonials
+│   └── Contact.jsx     # Contact form & info
 ├── assets/             # Static assets
 │   └── images/         # Image files
 ├── App.jsx             # Main app component
@@ -41,14 +46,16 @@ src/
 └── main.jsx            # App entry point
 ```
 
+
 ## 🎨 Design Features
 
 - **Color Scheme**: Dark theme with purple accents (#a855f7)
-- **Typography**: Inter font family for modern readability
-- **Glass Effects**: Frosted glass components with backdrop blur
-- **Gradient Backgrounds**: Smooth gradient overlays and backgrounds
-- **Hover Effects**: Interactive hover states and transitions
-- **Mobile-First**: Responsive design starting from mobile devices
+- **Typography**: Modern, clean fonts
+- **Glass Effects**: Frosted glass UI
+- **Gradient Backgrounds**: Smooth overlays
+- **Hover Effects**: Interactive transitions
+- **Mobile-First**: Responsive from mobile up
+
 
 ## 🛠️ Installation & Setup
 
@@ -73,67 +80,66 @@ src/
    npm run build
    ```
 
+
 ## 📱 Sections Overview
 
+
 ### Hero Section
-- Eye-catching introduction with animated 3D character
-- Call-to-action buttons
-- Social media links
+- Introduction, tagline, and social links (Instagram, LinkedIn, GitHub, LeetCode, Email)
 - Smooth scroll indicator
 
+
 ### About Section
-- Professional background and experience
-- Skills with animated progress bars
-- Experience timeline
-- Contact information
+- My background, coding journey, and interests
+- Skills (C++, Full Stack, Canva/Figma, Java, Python, Web Design)
+- Stats (Projects, Years, Technologies, Contributions)
+
 
 ### Services Section
-- UI/UX Design services offered
-- Interactive service cards with hover effects
-- Feature lists for each service
+- Frontend Development, Open Source Design, DSA & Coding, Web Design, Hackathon Experience, UI/UX Design
+- Interactive service cards with feature lists
+
 
 ### Projects Section
 - Portfolio showcase with category filtering
-- Project cards with overlay effects
-- Responsive grid layout
+- Example projects:
+   - **Konkan Diaries**: Tourism platform for Konkan region ([GitHub](https://github.com/RiddhiM170904/My-Konkan), [Live](https://konkandiaries.vercel.app/))
+   - **Samvidhan Path**: Group project for civic education
+   - **SmartFlow**: Hackathon-winning project
+   - **UI/UX Designs**: Figma, Canva, and more
+
 
 ### Reviews Section
-- Client testimonials carousel
-- Star ratings
-- Client information and photos
-- Statistics counter
+- Testimonials from collaborators and mentors
+
 
 ### Contact Section
 - Contact form with validation
-- Contact information cards
+- Email: riddhimhadgut17@gmail.com
 - Social media links
-- Newsletter subscription
+
 
 ## 🎯 Customization
 
+
 ### Colors
-Update the color scheme in `tailwind.config.js`:
-```javascript
-colors: {
-  primary: {
-    // Your custom colors
-  }
-}
-```
+Update the color scheme in `tailwind.config.js` as needed.
+
 
 ### Content
-- Update personal information in each section component
-- Replace placeholder images with actual project images
-- Modify social media links and contact information
+- Update your info in the section components
+- Replace images in `public/projects/` and `src/assets/images/`
+- Update social links in `Hero.jsx` and `Contact.jsx`
+
 
 ### Animations
-Customize animations in the CSS files:
-- `index.css` for global animations
-- Component files for specific animations
+Customize animations in `index.css` and section components
+
 
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
 
 ## 🤝 Contributing
 
@@ -143,23 +149,16 @@ This project is open source and available under the [MIT License](LICENSE).
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+
 ## 📞 Contact
 
-Sara Howari - [sara@example.com](mailto:sara@example.com)
+Riddhi Mhadgut - [riddhimhadgut17@gmail.com](mailto:riddhimhadgut17@gmail.com)
 
-Project Link: [https://github.com/yourusername/portfolio-react](https://github.com/yourusername/portfolio-react)
+Project Link: [https://github.com/RiddhiM170904/Portfolio-react](https://github.com/RiddhiM170904/Portfolio-react)
 
 ---
 
-⭐ If you like this project, please give it a star on GitHub!+ Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+⭐ If you like this project, please give it a star on GitHub!
