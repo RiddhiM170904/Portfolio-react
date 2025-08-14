@@ -106,50 +106,43 @@ const Services = () => {
         >
           {/* Skills Header */}
           <motion.div 
-            className="text-center mb-16 relative z-10"
+            className="text-center mb-0 pb-0 relative z-10"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-0 pb-0">
               My <span className="text-primary-400">Skills</span> Universe
             </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-0 pb-0" style={{marginBottom: '-8px'}}>
               Explore my technical skills floating in a dynamic digital space
             </p>
-            <motion.div 
-              className="w-24 h-1 bg-gradient-to-r from-primary-400 to-purple-500 mx-auto"
-              initial={{ width: 0 }}
-              whileInView={{ width: 96 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            />
           </motion.div>
 
           {/* Floating Background Bubbles */}
           <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
+            {[...Array(10)].map((_, i) => (
               <motion.div
                 key={`bg-bubble-${i}`}
                 className="absolute rounded-full bg-gradient-to-br from-primary-500/10 to-purple-500/10 blur-sm"
                 style={{
-                  width: Math.random() * 120 + 40,
-                  height: Math.random() * 120 + 40,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
+                  width: Math.random() * 60 + 20,
+                  height: Math.random() * 60 + 20,
+                  left: `${Math.random() * 90}%`,
+                  top: `${Math.random() * 90}%`,
                 }}
                 animate={{
-                  y: [0, -80, 0],
-                  x: [0, Math.random() * 60 - 30, 0],
-                  scale: [1, 1.3, 1],
-                  opacity: [0.05, 0.25, 0.05],
+                  y: [0, -40, 0],
+                  x: [0, Math.random() * 30 - 15, 0],
+                  scale: [1, 1.15, 1],
+                  opacity: [0.07, 0.18, 0.07],
                   rotate: [0, 360, 0]
                 }}
                 transition={{
-                  duration: Math.random() * 8 + 10,
+                  duration: Math.random() * 5 + 7,
                   repeat: Infinity,
-                  delay: Math.random() * 8,
+                  delay: Math.random() * 5,
                   ease: "easeInOut"
                 }}
               />
@@ -189,33 +182,32 @@ const Services = () => {
               </motion.div>
 
               {/* Floating Skill Bubbles */}
-              {[
-                // Programming Languages
-                { name: 'C++', icon: '⚡', x: -280, y: -180, delay: 0.8, color: 'from-blue-500 to-cyan-400', size: 'large' },
-                { name: 'JavaScript', icon: '🔥', x: 300, y: -150, delay: 1.0, color: 'from-yellow-400 to-orange-500', size: 'large' },
-                { name: 'Python', icon: '🐍', x: -350, y: 120, delay: 1.2, color: 'from-green-500 to-emerald-400', size: 'medium' },
-                { name: 'Java', icon: '☕', x: 260, y: 160, delay: 1.4, color: 'from-orange-500 to-red-500', size: 'medium' },
-                
-                // Web Technologies
-                { name: 'React', icon: '⚛️', x: -150, y: -300, delay: 1.6, color: 'from-cyan-400 to-blue-500', size: 'large' },
-                { name: 'HTML/CSS', icon: '🎨', x: 160, y: -320, delay: 1.8, color: 'from-pink-500 to-purple-500', size: 'large' },
-                { name: 'Tailwind', icon: '💨', x: -400, y: -60, delay: 2.0, color: 'from-teal-400 to-cyan-500', size: 'medium' },
-                { name: 'Node.js', icon: '🟢', x: 380, y: 0, delay: 2.2, color: 'from-green-400 to-emerald-500', size: 'medium' },
-                
-                // Design Tools
-                { name: 'Figma', icon: '🎭', x: -120, y: 280, delay: 2.4, color: 'from-purple-500 to-pink-500', size: 'medium' },
-                { name: 'Canva', icon: '✨', x: 120, y: 300, delay: 2.6, color: 'from-blue-500 to-purple-500', size: 'medium' },
-                
-                // Other Skills
-                { name: 'Git', icon: '🌟', x: -450, y: 200, delay: 2.8, color: 'from-gray-500 to-gray-700', size: 'small' },
-                { name: 'DSA', icon: '🧠', x: 420, y: -240, delay: 3.0, color: 'from-indigo-500 to-purple-600', size: 'small' },
-                { name: 'MongoDB', icon: '🍃', x: -200, y: 380, delay: 3.2, color: 'from-green-600 to-emerald-700', size: 'small' },
-                { name: 'UI/UX', icon: '🎪', x: 340, y: 240, delay: 3.4, color: 'from-pink-400 to-rose-500', size: 'small' },
-              ].map((skill, index) => {
+              {(
+                [
+                  // Programming Languages
+                  { name: 'C++', icon: '⚡', x: -280, y: -180, delay: 0.8, color: 'from-blue-500 to-cyan-400', size: 'large' },
+                  { name: 'JavaScript', icon: '🔥', x: 300, y: -150, delay: 1.0, color: 'from-yellow-400 to-orange-500', size: 'large' },
+                  { name: 'Python', icon: '🐍', x: -350, y: 120, delay: 1.2, color: 'from-green-500 to-emerald-400', size: 'medium' },
+                  { name: 'Java', icon: '☕', x: 260, y: 160, delay: 1.4, color: 'from-orange-500 to-red-500', size: 'medium' },
+                  // Web Technologies
+                  { name: 'React', icon: '⚛️', x: -150, y: -300, delay: 1.6, color: 'from-cyan-400 to-blue-500', size: 'large' },
+                  { name: 'HTML/CSS', icon: '🎨', x: 160, y: -320, delay: 1.8, color: 'from-pink-500 to-purple-500', size: 'large' },
+                  { name: 'Tailwind', icon: '💨', x: -400, y: -60, delay: 2.0, color: 'from-teal-400 to-cyan-500', size: 'medium' },
+                  { name: 'Node.js', icon: '🟢', x: 380, y: 0, delay: 2.2, color: 'from-green-400 to-emerald-500', size: 'medium' },
+                  // Design Tools
+                  { name: 'Figma', icon: '🎭', x: -120, y: 280, delay: 2.4, color: 'from-purple-500 to-pink-500', size: 'medium' },
+                  { name: 'Canva', icon: '✨', x: 120, y: 300, delay: 2.6, color: 'from-blue-500 to-purple-500', size: 'medium' },
+                  // Other Skills
+                  { name: 'Git', icon: '🌟', x: -450, y: 200, delay: 2.8, color: 'from-gray-500 to-gray-700', size: 'small' },
+                  { name: 'DSA', icon: '🧠', x: 420, y: -240, delay: 3.0, color: 'from-indigo-500 to-purple-600', size: 'small' },
+                  { name: 'MongoDB', icon: '🍃', x: -200, y: 380, delay: 3.2, color: 'from-green-600 to-emerald-700', size: 'small' },
+                  { name: 'UI/UX', icon: '🎪', x: 340, y: 240, delay: 3.4, color: 'from-pink-400 to-rose-500', size: 'small' },
+                ]
+              ).map((skill, index) => {
                 const sizes = {
-                  small: 'w-16 h-16 text-xs',
-                  medium: 'w-20 h-20 text-sm', 
-                  large: 'w-24 h-24 text-base'
+                    small: 'w-24 h-24 text-base',
+                    medium: 'w-32 h-32 text-lg', 
+                    large: 'w-40 h-40 text-xl'
                 };
                 
                 return (
@@ -225,8 +217,8 @@ const Services = () => {
                     style={{ 
                       left: '50%', 
                       top: '50%',
-                      marginLeft: skill.x * 0.6, // Better spacing distribution
-                      marginTop: skill.y * 0.6
+                      marginLeft: skill.x * 1.1, // More horizontal scatter
+                      marginTop: skill.y * 0.5   // Less vertical scatter
                     }}
                     initial={{ scale: 0, opacity: 0, rotate: -180 }}
                     whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
@@ -328,19 +320,19 @@ const Services = () => {
               })}
 
               {/* Orbit rings around center */}
-              {[1, 2, 3].map((ring, index) => (
+              {[1, 2].map((ring, index) => (
                 <motion.div
                   key={`ring-${ring}`}
                   className="absolute top-1/2 left-1/2 border border-primary-400/20 rounded-full pointer-events-none"
                   style={{
-                    width: `${(ring + 1) * 200}px`,
-                    height: `${(ring + 1) * 200}px`,
-                    marginLeft: `-${(ring + 1) * 100}px`,
-                    marginTop: `-${(ring + 1) * 100}px`,
+                    width: `${(ring + 1) * 120}px`,
+                    height: `${(ring + 1) * 120}px`,
+                    marginLeft: `-${(ring + 1) * 60}px`,
+                    marginTop: `-${(ring + 1) * 60}px`,
                   }}
                   animate={{ rotate: 360 }}
                   transition={{
-                    duration: 20 + ring * 10,
+                    duration: 16 + ring * 8,
                     repeat: Infinity,
                     ease: "linear"
                   }}
@@ -354,7 +346,7 @@ const Services = () => {
 
           {/* Skills Legend */}
           <motion.div
-            className="text-center mt-16 relative z-10"
+            className="text-center mt-8 relative z-10"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 3.5 }}
