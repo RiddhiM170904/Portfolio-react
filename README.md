@@ -1,164 +1,101 @@
+<div align="center" style="position: relative;">
 
-# Riddhi Mhadgut - Portfolio Website
+<!-- Banner image (original from your README) -->
+<img width="100%" height="350" alt="Banner" src="https://github.com/user-attachments/assets/8bc991f5-3bb1-4275-9fd3-a9177f746abe" />
 
+<!-- Text overlay -->
+<div style="position: relative; padding-top: 250px; z-index: 1;">
+  <h1 align="center">Hi there <img src="https://user-images.githubusercontent.com/72663882/171687151-bb31c996-c9d2-49c8-b593-734946893b23.gif" alt="waving hand gif" aria-hidden="true" width="40" /> I'm Riddhi Mhadgut</h1>
+  <h3>B.Tech. Computer Science @ VIT Bhopal | Pre-Final Year | Open Source Contributor 🚀</h3>
 
-A modern, responsive portfolio website built with React and Tailwind CSS, showcasing my projects, coding journey, open-source contributions, and design skills.
+  <p>
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=30&pause=1000&color=3A1C71&center=true&vCenter=true&width=600&lines=Hey+there!+I'm+Riddhi+%F0%9F%91%8B;Welcome+to+my+GitHub+profile!" alt="Typing animation" />
+  </p>
 
+  <!-- Profile views and social links -->
+  <p>
+    <img src="https://komarev.com/ghpvc/?username=RiddhiM170904&label=Profile%20views&color=0e75b6&style=for-the-badge" alt="Profile views" />
+    <a href="https://github.com/RiddhiM170904">
+      <img src="https://img.shields.io/github/followers/RiddhiM170904?logo=github&style=for-the-badge" alt="GitHub followers" />
+    </a>
+  </p>
 
-## ✨ Features
+  <!--Line-->
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"> 
 
-- **Modern Design**: Clean, professional design with a purple-accented theme
-- **Responsive**: Fully responsive for all devices
-- **Smooth Animations**: Subtle transitions and framer-motion effects
-- **Interactive Components**: Project filters, testimonials carousel, and more
-- **Contact Form**: Functional and validated contact form
-- **Showcase**: Real-world projects, hackathon experience, and open-source contributions
+  <h3>Connect with Me 🌐</h3>
+ <p>
+  <a href="https://riddhi-mhadgut-portfolio.vercel.app/" target="_blank">
+    <img src="https://github.com/user-attachments/assets/ce9068e9-1263-4521-b0bf-f0baf4ad2e16" width="35" alt="Portfolio" />
+  </a>
+  <a href="https://instagram.com/riddhi_mdt" target="_blank">
+    <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white" alt="Instagram" />
+  </a>
+  <a href="https://linkedin.com/in/riddhi-mhadgut-3b0a21289" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="mailto:riddhimhadgut17@gmail.com" target="_blank">
+    <img src="https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white" alt="Email" />
+  </a>
+</p>
+  
+  <!--Line-->
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"> 
 
+  <h3>🚀 Languages & Tools</h3>
+  <p>
+    <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white"/>
+    <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"/>
+    <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+    <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"/>
+    <img src="https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white"/>
+    <img src="https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white"/>
+    <img src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white"/>
+  </p>
 
-## 🚀 Tech Stack
+  <!--Line-->
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"> 
 
-- **React 19** - Frontend framework
-- **Tailwind CSS** - Utility-first CSS framework
-- **Vite** - Build tool and development server
-- **Framer Motion** - Animations
-- **React Icons** - Icon library
+  <h3>🌟 GitHub Trophies</h3>
+  <p>
+    <a href="https://github.com/ryo-ma/github-profile-trophy">
+      <img src="https://github-profile-trophy.vercel.app/?username=RiddhiM170904&theme=tokyonight&no-frame=false&no-bg=true&margin-w=4" alt="GitHub Trophies" />
+    </a>
+  </p>
+  
+  <!--Line-->
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"> 
 
+  <h3>📊 GitHub Stats</h3>
+  <p>
+    <img src="https://github-readme-stats.vercel.app/api?username=RiddhiM170904&theme=tokyonight&hide_border=false&include_all_commits=true&count_private=true" alt="GitHub Stats"/><br>
+    <img src="https://github-readme-streak-stats.herokuapp.com/?user=RiddhiM170904&theme=tokyonight&hide_border=false" alt="GitHub Streak"/><br>
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=RiddhiM170904&theme=tokyonight&hide_border=false&include_all_commits=true&count_private=true&layout=compact" alt="Top Languages" />
+  </p>
 
-## 📁 Project Structure
+  <!--Line-->
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"> 
 
-```
-src/
-├── components/          # Reusable components
-│   ├── Navigation.jsx   # Main navigation component
-│   └── Footer.jsx       # Footer component
-├── sections/           # Page sections
-│   ├── Hero.jsx        # Hero/landing section
-│   ├── About.jsx       # About me, skills, stats
-│   ├── Services.jsx    # What I offer (dev, design, DSA, hackathons)
-│   ├── Projects.jsx    # Portfolio projects (web, group, UI/UX)
-│   ├── Reviews.jsx     # Testimonials
-│   └── Contact.jsx     # Contact form & info
-├── assets/             # Static assets
-│   └── images/         # Image files
-├── App.jsx             # Main app component
-├── App.css             # App-specific styles
-├── index.css           # Global styles & Tailwind imports
-└── main.jsx            # App entry point
-```
+  <h3>📊 LeetCode Stats</h3>
+  <p>
+    <a href="https://github.com/JeremyTsaii/leetcode-stats">
+      <img src="https://leetcode-stats.vercel.app/api?username=Riddhi_Mhadgut&theme=Dark" alt="LeetCode Stats"/>
+    </a>
+  </p>
 
+  <!--Line-->
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"> 
 
-## 🎨 Design Features
+  <h3>🔝 Top Contributed Repo</h3>
+  <p>
+    <img src="https://github-contributor-stats.vercel.app/api?username=RiddhiM170904&limit=5&theme=tokyonight&combine_all_yearly_contributions=true" alt="Top Contributed Repo"/>
+  </p>
 
-- **Color Scheme**: Dark theme with purple accents (#a855f7)
-- **Typography**: Modern, clean fonts
-- **Glass Effects**: Frosted glass UI
-- **Gradient Backgrounds**: Smooth overlays
-- **Hover Effects**: Interactive transitions
-- **Mobile-First**: Responsive from mobile up
+  <!--Line-->
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"> 
+</div>
 
+<h3>🥉 Certification Badges </h3>
 
-## 🛠️ Installation & Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd portfolio-react
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Build for production**
-   ```bash
-   npm run build
-   ```
-
-
-## 📱 Sections Overview
-
-
-### Hero Section
-- Introduction, tagline, and social links (Instagram, LinkedIn, GitHub, LeetCode, Email)
-- Smooth scroll indicator
-
-
-### About Section
-- My background, coding journey, and interests
-- Skills (C++, Full Stack, Canva/Figma, Java, Python, Web Design)
-- Stats (Projects, Years, Technologies, Contributions)
-
-
-### Services Section
-- Frontend Development, Open Source Design, DSA & Coding, Web Design, Hackathon Experience, UI/UX Design
-- Interactive service cards with feature lists
-
-
-### Projects Section
-- Portfolio showcase with category filtering
-- Example projects:
-   - **Konkan Diaries**: Tourism platform for Konkan region ([GitHub](https://github.com/RiddhiM170904/My-Konkan), [Live](https://konkandiaries.vercel.app/))
-   - **Samvidhan Path**: Group project for civic education
-   - **SmartFlow**: Hackathon-winning project
-   - **UI/UX Designs**: Figma, Canva, and more
-
-
-### Reviews Section
-- Testimonials from collaborators and mentors
-
-
-### Contact Section
-- Contact form with validation
-- Email: riddhimhadgut17@gmail.com
-- Social media links
-
-
-## 🎯 Customization
-
-
-### Colors
-Update the color scheme in `tailwind.config.js` as needed.
-
-
-### Content
-- Update your info in the section components
-- Replace images in `public/projects/` and `src/assets/images/`
-- Update social links in `Hero.jsx` and `Contact.jsx`
-
-
-### Animations
-Customize animations in `index.css` and section components
-
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-
-## 🤝 Contributing
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-## 📞 Contact
-
-Riddhi Mhadgut - [riddhimhadgut17@gmail.com](mailto:riddhimhadgut17@gmail.com)
-
-Project Link: [https://github.com/RiddhiM170904/Portfolio-react](https://github.com/RiddhiM170904/Portfolio-react)
-
----
-
-
----
-
-⭐ If you like this project, please give it a star on GitHub!
+<!-- You can add your certification badge images below as you earn them -->
+![microsoft-certified-azure-data-fundamentals (2)](https://github.com/user-attachments/assets/c6494674-9157-4273-a4c9-acfae8386ee4)
