@@ -12,12 +12,12 @@ const Footer = () => {
   ];
 
   const services = [
-    'UI/UX Design',
+    'Frontend Development',
+    'Open Source Design Contributions',
+    'DSA & Coding',
     'Web Design',
-    'Mobile App Design',
-    'Prototyping',
-    'User Research',
-    'Design Systems'
+    'Hackathon Experience',
+    'UI/UX Design'
   ];
 
   const scrollToSection = (href) => {

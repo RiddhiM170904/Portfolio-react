@@ -79,10 +79,7 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Information */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-6">Let's Talk</h3>
-            <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-              I’m always eager to collaborate on innovative tech projects and help bring meaningful digital solutions to life. Whether you need intuitive UI/UX design, smart web development, or strategic support for tech initiatives, I’m here to help. From building responsive interfaces to solving real-world problems through code, I’m passionate about crafting impactful digital experiences.
-            </p>
+            
 
             {/* Contact Info Cards */}
             <div className="space-y-6">
