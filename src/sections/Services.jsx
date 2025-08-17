@@ -1,8 +1,74 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaPython, FaJava, FaFigma, FaAws } from 'react-icons/fa';
+import { SiCplusplus, SiTailwindcss, SiCanva } from 'react-icons/si';
 
 
 const Services = () => {
+  // Container and bubble sizes for clamping
+  const containerW = 900;
+  const containerH = 420;
+  const pxSizes = { large: 96, medium: 80, small: 56 };
+  // Clamp helper
+  const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
+  // Clamp initial positions so bubbles always start fully inside the box
+  const skills = [
+    { name: 'React', icon: FaReact, x: -300, y: -80, size: 'large' },
+    { name: 'Node.js', icon: FaNodeJs, x: -150, y: -120, size: 'large' },
+    { name: 'HTML5', icon: FaHtml5, x: 0, y: -140, size: 'large' },
+    { name: 'CSS3', icon: FaCss3Alt, x: 150, y: -120, size: 'large' },
+    { name: 'JavaScript', icon: FaJs, x: 300, y: -80, size: 'large' },
+    { name: 'Python', icon: FaPython, x: -225, y: 0, size: 'medium' },
+    { name: 'Java', icon: FaJava, x: -75, y: 0, size: 'medium' },
+    { name: 'Git', icon: FaGitAlt, x: 75, y: 0, size: 'medium' },
+    { name: 'Figma', icon: FaFigma, x: 225, y: 0, size: 'medium' },
+    { name: 'C++', icon: SiCplusplus, x: -300, y: 100, size: 'medium' },
+    { name: 'Tailwind', icon: SiTailwindcss, x: -150, y: 140, size: 'medium' },
+    { name: 'Canva', icon: SiCanva, x: 0, y: 160, size: 'medium' },
+    { name: 'AWS', icon: FaAws, x: 150, y: 140, size: 'medium' },
+    { name: 'TypeScript', icon: FaJs, x: 300, y: 100, size: 'medium' },
+  ].map(skill => {
+    const pxSize = pxSizes[skill.size];
+    const maxX = (containerW / 2) - (pxSize / 2) - 8;
+    const maxY = (containerH / 2) - (pxSize / 2) - 8;
+    return {
+      ...skill,
+      x: clamp(skill.x, -maxX, maxX),
+      y: clamp(skill.y, -maxY, maxY)
+    };
+  });
+
+  const sizes = {
+    small: 'w-14 h-14 text-base',
+    medium: 'w-20 h-20 text-lg',
+    large: 'w-24 h-24 text-xl',
+  };
+  const [bubbleStates, setBubbleStates] = React.useState(
+    skills.map(skill => ({ x: skill.x, y: skill.y, isDragging: false }))
+  );
+
+  React.useEffect(() => {
+    const timeouts = [];
+    bubbleStates.forEach((bubble, i) => {
+      if (bubble.isDragging) return;
+      function move() {
+        const maxX = 400, maxY = 180;
+        let x = skills[i].x + (Math.random() - 0.5) * 60;
+        let y = skills[i].y + (Math.random() - 0.5) * 60;
+        x = Math.max(-maxX, Math.min(maxX, x));
+        y = Math.max(-maxY, Math.min(maxY, y));
+        setBubbleStates(prev => {
+          const copy = [...prev];
+          copy[i] = { ...copy[i], x, y };
+          return copy;
+        });
+        timeouts[i] = setTimeout(move, 12000 + Math.random() * 3000);
+      }
+      timeouts[i] = setTimeout(move, 12000 + Math.random() * 3000);
+    });
+    return () => timeouts.forEach(t => clearTimeout(t));
+  }, [bubbleStates, skills]);
   const services = [
     {
       icon: '🌐',
@@ -104,6 +170,7 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
+          </motion.div>
           {/* Skills Header */}
           <motion.div 
             className="text-center mb-0 pb-0 relative z-10"
@@ -113,7 +180,7 @@ const Services = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-0 pb-0">
-              My <span className="text-primary-400">Skills</span> Universe
+              My <span className="text-primary-400">Skills</span> 
             </h2>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-0 pb-0" style={{marginBottom: '-8px'}}>
               Explore my technical skills floating in a dynamic digital space
@@ -149,399 +216,107 @@ const Services = () => {
             ))}
           </div>
 
-          {/* Main Skills Bubbles Container */}
-          <div className="relative min-h-[800px] flex items-center justify-center">
-            <div className="relative w-full max-w-8xl mx-auto px-4">
-              {/* Center Core Bubble - Main Identity */}
-              <motion.div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
-                initial={{ scale: 0, rotate: -180 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                transition={{ duration: 1, delay: 0.5, type: "spring", bounce: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <motion.div 
-                  className="w-32 h-32 bg-gradient-to-br from-primary-400 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white/20"
-                  animate={{ 
-                    scale: [1, 1.05, 1],
-                    boxShadow: [
-                      "0 0 30px rgba(96, 165, 250, 0.5)",
-                      "0 0 50px rgba(168, 85, 247, 0.8)",
-                      "0 0 30px rgba(96, 165, 250, 0.5)"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <div className="text-center">
-                    <div className="text-3xl mb-1">👩‍💻</div>
-                    <div className="text-white font-bold text-sm">Full Stack</div>
-                    <div className="text-white/80 text-xs">Developer</div>
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Floating Skill Bubbles */}
-              {(
-                [
-                  // Programming Languages
-                  { name: 'C++', icon: '⚡', x: -280, y: -180, delay: 0.8, color: 'from-blue-500 to-cyan-400', size: 'large' },
-                  { name: 'JavaScript', icon: '🔥', x: 300, y: -150, delay: 1.0, color: 'from-yellow-400 to-orange-500', size: 'large' },
-                  { name: 'Python', icon: '🐍', x: -350, y: 120, delay: 1.2, color: 'from-green-500 to-emerald-400', size: 'medium' },
-                  { name: 'Java', icon: '☕', x: 260, y: 160, delay: 1.4, color: 'from-orange-500 to-red-500', size: 'medium' },
-                  // Web Technologies
-                  { name: 'React', icon: '⚛️', x: -150, y: -300, delay: 1.6, color: 'from-cyan-400 to-blue-500', size: 'large' },
-                  { name: 'HTML/CSS', icon: '🎨', x: 160, y: -320, delay: 1.8, color: 'from-pink-500 to-purple-500', size: 'large' },
-                  { name: 'Tailwind', icon: '💨', x: -400, y: -60, delay: 2.0, color: 'from-teal-400 to-cyan-500', size: 'medium' },
-                  { name: 'Node.js', icon: '🟢', x: 380, y: 0, delay: 2.2, color: 'from-green-400 to-emerald-500', size: 'medium' },
-                  // Design Tools
-                  { name: 'Figma', icon: '🎭', x: -120, y: 280, delay: 2.4, color: 'from-purple-500 to-pink-500', size: 'medium' },
-                  { name: 'Canva', icon: '✨', x: 120, y: 300, delay: 2.6, color: 'from-blue-500 to-purple-500', size: 'medium' },
-                  // Other Skills
-                  { name: 'Git', icon: '🌟', x: -450, y: 200, delay: 2.8, color: 'from-gray-500 to-gray-700', size: 'small' },
-                  { name: 'DSA', icon: '🧠', x: 420, y: -240, delay: 3.0, color: 'from-indigo-500 to-purple-600', size: 'small' },
-                  { name: 'MongoDB', icon: '🍃', x: -200, y: 380, delay: 3.2, color: 'from-green-600 to-emerald-700', size: 'small' },
-                  { name: 'UI/UX', icon: '🎪', x: 340, y: 240, delay: 3.4, color: 'from-pink-400 to-rose-500', size: 'small' },
-                ]
-              ).map((skill, index) => {
-                const sizes = {
-                    small: 'w-24 h-24 text-base',
-                    medium: 'w-32 h-32 text-lg', 
-                    large: 'w-40 h-40 text-xl'
-                };
-                
+          {/* Main Skills Bubbles Container with wider glassy background */}
+          <div className="relative min-h-[600px] flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+              <div className="w-[900px] h-[420px] bg-gradient-to-br from-purple-400/20 via-indigo-500/20 to-primary-400/20 rounded-2xl shadow-2xl backdrop-blur-2xl border border-white/10" style={{ filter: 'blur(0px)' }}></div>
+            </div>
+            <div className="relative w-full max-w-8xl mx-auto px-2 md:px-4 z-10 flex flex-wrap justify-center items-center md:block" style={{ minHeight: '320px' }}>
+              {/* Glassy Skills Bubble with Dragger and Animated Movement */}
+              {/* Bubble rendering */}
+              {skills.map((skill, index) => {
+                const bubblePos = bubbleStates[index] || { x: skill.x, y: skill.y };
+                const isDragging = bubbleStates[index]?.isDragging || false;
+                // Bubble size in px (approximate)
+                const pxSize = pxSizes[skill.size];
+                const maxX = (containerW / 2) - (pxSize / 2) - 8;
+                const maxY = (containerH / 2) - (pxSize / 2) - 8;
+                // Clamp bubble position for drag
+                const clampedX = clamp(bubblePos.x, -maxX, maxX);
+                const clampedY = clamp(bubblePos.y, -maxY, maxY);
+                // Floating animation range (never exceed available space)
+                const floatRangeX = Math.max(0, Math.min(8, maxX - Math.abs(clampedX)));
+                const floatRangeY = Math.max(0, Math.min(8, maxY - Math.abs(clampedY)));
+                // Define drag constraints for each bubble
+                const dragConstraints = { left: -maxX, right: maxX, top: -maxY, bottom: maxY };
                 return (
                   <motion.div
                     key={skill.name}
-                    className="absolute"
-                    style={{ 
-                      left: '50%', 
+                    className="absolute select-none"
+                    style={{
+                      left: '50%',
                       top: '50%',
-                      marginLeft: skill.x * 1.1, // More horizontal scatter
-                      marginTop: skill.y * 0.5   // Less vertical scatter
+                      marginLeft: clampedX,
+                      marginTop: clampedY,
+                      zIndex: 2,
+                      pointerEvents: 'auto',
                     }}
                     initial={{ scale: 0, opacity: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: skill.delay,
-                      type: "spring",
-                      bounce: 0.6
+                    animate={{
+                      scale: 1,
+                      opacity: 1,
+                      rotate: 0,
                     }}
-                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.8,
+                      delay: 0.2 + index * 0.08,
+                      type: 'spring',
+                      bounce: 0.6,
+                    }}
                   >
                     <motion.div
-                      className={`${sizes[skill.size]} bg-gradient-to-br ${skill.color} rounded-full flex flex-col items-center justify-center shadow-xl border-2 border-white/30 cursor-pointer relative overflow-hidden`}
+                      className={`${sizes[skill.size]} flex flex-col items-center justify-center border-2 border-white/20 relative overflow-hidden bg-gradient-to-br from-purple-400/30 to-indigo-500/30 rounded-full shadow-lg`}
+                      drag
+                      dragMomentum={false}
+                      dragElastic={0.2}
+                      dragConstraints={dragConstraints}
+                      onDragStart={() => setBubbleStates(prev => {
+                        const copy = [...prev];
+                        copy[index] = { ...copy[index], isDragging: true };
+                        return copy;
+                      })}
+                      onDragEnd={() => setBubbleStates(prev => {
+                        const copy = [...prev];
+                        // Clamp to bounds after drag
+                        copy[index] = {
+                          ...copy[index],
+                          isDragging: false,
+                          x: clamp(copy[index].x, -maxX, maxX),
+                          y: clamp(copy[index].y, -maxY, maxY)
+                        };
+                        return copy;
+                      })}
+                      style={{
+                        boxShadow: '0 2px 8px 0 rgba(168,85,247,0.10)',
+                        cursor: isDragging ? 'grabbing' : 'grab',
+                        userSelect: 'none',
+                        pointerEvents: 'auto',
+                      }}
+                      whileHover={isDragging ? {} : { scale: 1.13, rotate: 8 }}
+                      whileTap={{ scale: 0.95 }}
                       animate={{
-                        y: [0, -15, 0],
-                        x: [0, Math.sin(index * 0.5) * 8, 0],
-                        rotate: [0, 8, -8, 0],
-                        scale: [1, 1.05, 1],
+                        y: [0, -floatRangeY, 0, floatRangeY, 0],
+                        x: [0, floatRangeX, 0, -floatRangeX, 0],
+                        scale: [1, 1.07, 1, 0.97, 1],
                       }}
                       transition={{
-                        duration: Math.random() * 4 + 6,
+                        duration: 6 + index * 0.5,
                         repeat: Infinity,
-                        delay: Math.random() * 3,
-                        ease: "easeInOut"
+                        repeatType: 'loop',
+                        ease: 'easeInOut',
+                        delay: index * 0.2
                       }}
-                      whileHover={{ 
-                        scale: 1.2, 
-                        rotate: 15,
-                        y: -10,
-                        transition: { duration: 0.3 }
-                      }}
-                      whileTap={{ scale: 0.9 }}
                     >
-                      {/* Enhanced floating shine effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 rounded-full"
-                        animate={{ 
-                          rotate: [0, 360],
-                          scale: [0.8, 1.2, 0.8],
-                          opacity: [0.3, 0.6, 0.3]
-                        }}
-                        transition={{ 
-                          duration: 6, 
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      />
-                      
-                      {/* Pulsing glow effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-white/10 rounded-full blur-sm"
-                        animate={{ 
-                          scale: [1, 1.3, 1],
-                          opacity: [0.2, 0.5, 0.2]
-                        }}
-                        transition={{ 
-                          duration: 3, 
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      />
-                      
-                      {/* Content */}
-                      <div className="relative z-10 text-center">
-                        <motion.div 
-                          className={`${skill.size === 'small' ? 'text-lg' : skill.size === 'medium' ? 'text-xl' : 'text-2xl'} mb-1`}
-                          animate={{
-                            rotate: [0, 10, -10, 0],
-                            scale: [1, 1.1, 1]
-                          }}
-                          transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            delay: index * 0.2,
-                            ease: "easeInOut"
-                          }}
-                        >
-                          {skill.icon}
-                        </motion.div>
-                        <div className="text-white font-bold leading-tight">{skill.name}</div>
+                      <div className="relative z-10 text-center flex flex-col items-center justify-center select-none">
+                        <div className={`${skill.size === 'small' ? 'text-lg' : skill.size === 'medium' ? 'text-xl' : 'text-2xl'} mb-1 text-white/90`}>
+                          {React.createElement(skill.icon)}
+                        </div>
+                        <div className="text-white font-bold leading-tight text-xs md:text-sm mt-1">{skill.name}</div>
                       </div>
                     </motion.div>
-                    
-                    {/* Connecting lines to center (subtle) */}
-                    <motion.div
-                      className="absolute top-1/2 left-1/2 w-0.5 bg-gradient-to-r from-transparent via-primary-400/20 to-transparent origin-left"
-                      style={{
-                        height: '1px',
-                        width: Math.sqrt(skill.x * skill.x + skill.y * skill.y) * 0.6,
-                        transform: `rotate(${Math.atan2(skill.y, skill.x) * 180 / Math.PI}deg) translateY(-50%)`
-                      }}
-                      initial={{ scaleX: 0, opacity: 0 }}
-                      whileInView={{ scaleX: 1, opacity: 0.2 }}
-                      transition={{ duration: 1.5, delay: skill.delay + 1 }}
-                      viewport={{ once: true }}
-                    />
                   </motion.div>
                 );
               })}
-
-              {/* Orbit rings around center */}
-              {[1, 2].map((ring, index) => (
-                <motion.div
-                  key={`ring-${ring}`}
-                  className="absolute top-1/2 left-1/2 border border-primary-400/20 rounded-full pointer-events-none"
-                  style={{
-                    width: `${(ring + 1) * 120}px`,
-                    height: `${(ring + 1) * 120}px`,
-                    marginLeft: `-${(ring + 1) * 60}px`,
-                    marginTop: `-${(ring + 1) * 60}px`,
-                  }}
-                  animate={{ rotate: 360 }}
-                  transition={{
-                    duration: 16 + ring * 8,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 0.1, scale: 1 }}
-                  viewport={{ once: true }}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Skills Legend */}
-          <motion.div
-            className="text-center mt-8 relative z-10"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 3.5 }}
-            viewport={{ once: true }}
-          >
-            <div className="glass-effect p-8 rounded-2xl max-w-4xl mx-auto">
-              <h4 className="text-2xl font-bold text-white mb-4 flex items-center justify-center gap-3">
-                <motion.span
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                >
-                  🌌
-                </motion.span>
-                Skills in Motion
-                <motion.span
-                  animate={{ rotate: [360, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                >
-                  ⭐
-                </motion.span>
-              </h4>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Each bubble represents a skill in my ever-expanding universe of knowledge. 
-                The size and glow indicate my proficiency level. 
-                Hover over any skill to see it come to life with enhanced animations!
-              </p>
-              
-              <div className="flex justify-center gap-8 mt-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full animate-pulse"></div>
-                  <span className="text-gray-300 text-sm">Primary Technologies</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 bg-gradient-to-br from-green-500 to-emerald-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-                  <span className="text-gray-300 text-sm">Growing Skills</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-4 h-4 bg-gradient-to-br from-purple-500 to-pink-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-                  <span className="text-gray-300 text-sm">Specialized Tools</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <p className="text-gray-300 text-lg mb-8">
-            Ready to start your project? Let's work together to create something amazing.
-          </p>
-          <button className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-200 transform hover:scale-105 text-lg" >
-            Get Started Today
-          </button>
-        </div>
-
-        {/* Additional Resume Sections */}
-        <div className="mt-20 space-y-16">
-          {/* Achievements & Recognition */}
-          <div className="text-center">
-            <h3 className="text-3xl font-bold text-white mb-8">
-              Achievements & <span className="text-primary-400">Recognition</span>
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: '🏆',
-                  title: 'Academic Excellence',
-                  description: 'Maintained 8.94 CGPA in Computer Science',
-                  color: 'from-yellow-400 to-orange-500'
-                },
-                {
-                  icon: '💡',
-                  title: 'Problem Solver',
-                  description: 'Solved 100+ coding problems on various platforms',
-                  color: 'from-blue-400 to-cyan-500'
-                },
-                {
-                  icon: '🎯',
-                  title: 'Project Innovation',
-                  description: 'Developed 10+ real-world applications',
-                  color: 'from-green-400 to-emerald-500'
-                },
-                {
-                  icon: '🌟',
-                  title: 'Leadership',
-                  description: 'Led multiple team projects and collaborations',
-                  color: 'from-purple-400 to-pink-500'
-                },
-                {
-                  icon: '🚀',
-                  title: 'Tech Enthusiast',
-                  description: 'Always learning cutting-edge technologies',
-                  color: 'from-red-400 to-rose-500'
-                },
-                {
-                  icon: '🎨',
-                  title: 'Creative Designer',
-                  description: 'Expert in UI/UX design with Figma & Canva',
-                  color: 'from-indigo-400 to-blue-500'
-                }
-              ].map((achievement, index) => (
-                <div key={index} className="glass-effect p-6 rounded-xl hover:scale-105 transition-all duration-300">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${achievement.color} rounded-full flex items-center justify-center text-2xl mx-auto mb-4`}>
-                    {achievement.icon}
-                  </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">{achievement.title}</h4>
-                  <p className="text-gray-300">{achievement.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Certifications & Learning */}
-          <div className="text-center">
-            <h3 className="text-3xl font-bold text-white mb-8">
-              Certifications & <span className="text-primary-400">Learning</span>
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                {
-                  icon: '📜',
-                  title: 'Web Development Foundations',
-                  provider: 'Self-Directed Learning',
-                  status: 'Completed',
-                  color: 'border-green-400'
-                },
-                {
-                  icon: '💻',
-                  title: 'Full Stack Development',
-                  provider: 'Online Courses & Projects',
-                  status: 'In Progress',
-                  color: 'border-blue-400'
-                },
-                {
-                  icon: '🎯',
-                  title: 'Data Structures & Algorithms',
-                  provider: 'Competitive Programming',
-                  status: 'Advanced',
-                  color: 'border-purple-400'
-                },
-                {
-                  icon: '🎨',
-                  title: 'UI/UX Design Principles',
-                  provider: 'Figma & Canva Mastery',
-                  status: 'Certified',
-                  color: 'border-pink-400'
-                }
-              ].map((cert, index) => (
-                <div key={index} className={`glass-effect p-6 rounded-xl border-l-4 ${cert.color} hover:scale-105 transition-all duration-300`}>
-                  <div className="flex items-center mb-4">
-                    <span className="text-3xl mr-4">{cert.icon}</span>
-                    <div>
-                      <h4 className="text-xl font-semibold text-white">{cert.title}</h4>
-                      <p className="text-primary-300">{cert.provider}</p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Status:</span>
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      cert.status === 'Completed' ? 'bg-green-500/20 text-green-300' :
-                      cert.status === 'In Progress' ? 'bg-blue-500/20 text-blue-300' :
-                      cert.status === 'Advanced' ? 'bg-purple-500/20 text-purple-300' :
-                      'bg-pink-500/20 text-pink-300'
-                    }`}>
-                      {cert.status}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Interests & Hobbies */}
-          <div className="text-center">
-            <h3 className="text-3xl font-bold text-white mb-8">
-              Interests & <span className="text-primary-400">Passions</span>
-            </h3>
-            <div className="flex flex-wrap justify-center gap-4">
-              {[
-                { name: 'Competitive Programming', icon: '⚡' },
-                { name: 'Open Source', icon: '🌐' },
-                { name: 'Tech Blogs', icon: '📚' },
-                { name: 'UI/UX Design', icon: '🎨' },
-                { name: 'Machine Learning', icon: '🤖' },
-                { name: 'Web Technologies', icon: '💻' },
-                { name: 'Problem Solving', icon: '🧩' },
-                { name: 'Innovation', icon: '💡' },
-                { name: 'Team Collaboration', icon: '🤝' },
-                { name: 'Continuous Learning', icon: '📈' }
-              ].map((interest, index) => (
-                <div key={index} className="glass-effect px-6 py-3 rounded-full hover:scale-110 transition-all duration-300 cursor-default">
-                  <span className="text-lg mr-2">{interest.icon}</span>
-                  <span className="text-white font-medium">{interest.name}</span>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -573,6 +348,158 @@ const Services = () => {
                 <p className="text-gray-300">Internships, projects, and collaborations</p>
               </div>
             </div>
+          </div>
+        </div>
+      {/* Call to Action */}
+      <div className="text-center mt-24 mb-12 px-4 md:px-0">
+        <p className="text-gray-300 text-lg mb-8">
+          Ready to start your project? Let's work together to create something amazing.
+        </p>
+        <button className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-10 py-4 rounded-full font-medium transition-all duration-200 transform hover:scale-105 text-lg shadow-lg" >
+          Get Started Today
+        </button>
+      </div>
+
+      {/* Additional Resume Sections */}
+  <div className="mt-24 space-y-24 px-2 md:px-0">
+        {/* Achievements & Recognition */}
+        <div className="text-center pb-2 md:pb-4">
+          <h3 className="text-3xl font-bold text-white mb-10">
+            Achievements & <span className="text-primary-400">Recognition</span>
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 m-5">
+            {[
+              {
+                icon: '🏆',
+                title: 'Academic Excellence',
+                description: 'Maintained 8.94 CGPA in Computer Science',
+                color: 'from-yellow-400 to-orange-500'
+              },
+              {
+                icon: '💡',
+                title: 'Problem Solver',
+                description: 'Solved 100+ coding problems on various platforms',
+                color: 'from-blue-400 to-cyan-500'
+              },
+              {
+                icon: '🎯',
+                title: 'Project Innovation',
+                description: 'Developed 10+ real-world applications',
+                color: 'from-green-400 to-emerald-500'
+              },
+              {
+                icon: '🌟',
+                title: 'Leadership',
+                description: 'Led multiple team projects and collaborations',
+                color: 'from-purple-400 to-pink-500'
+              },
+              {
+                icon: '🚀',
+                title: 'Tech Enthusiast',
+                description: 'Always learning cutting-edge technologies',
+                color: 'from-red-400 to-rose-500'
+              },
+              {
+                icon: '🎨',
+                title: 'Creative Designer',
+                description: 'Expert in UI/UX design with Figma & Canva',
+                color: 'from-indigo-400 to-blue-500'
+              }
+            ].map((achievement, index) => (
+              <div key={index} className="glass-effect p-10 my-4 rounded-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center min-h-[220px]">
+                <div className={`w-16 h-16 bg-gradient-to-br ${achievement.color} rounded-full flex items-center justify-center text-2xl mx-auto mb-4`}>
+                  {achievement.icon}
+                </div>
+                <h4 className="text-xl font-semibold text-white mb-2">{achievement.title}</h4>
+                <p className="text-gray-300">{achievement.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Certifications & Learning */}
+        <div className="text-center pb-2 md:pb-4">
+          <h3 className="text-3xl font-bold text-white mb-10">
+            Certifications & <span className="text-primary-400">Learning</span>
+          </h3>
+          <div className="grid md:grid-cols-2 gap-8 m-5">
+            {[
+              {
+                icon: '📜',
+                title: 'Web Development Foundations',
+                provider: 'Self-Directed Learning',
+                status: 'Completed',
+                color: 'border-green-400'
+              },
+              {
+                icon: '💻',
+                title: 'Full Stack Development',
+                provider: 'Online Courses & Projects',
+                status: 'In Progress',
+                color: 'border-blue-400'
+              },
+              {
+                icon: '🎯',
+                title: 'Data Structures & Algorithms',
+                provider: 'Competitive Programming',
+                status: 'Advanced',
+                color: 'border-purple-400'
+              },
+              {
+                icon: '🎨',
+                title: 'UI/UX Design Principles',
+                provider: 'Figma & Canva Mastery',
+                status: 'Certified',
+                color: 'border-pink-400'
+              }
+            ].map((cert, index) => (
+              <div key={index} className={`glass-effect p-10 my-4 rounded-2xl border-l-4 ${cert.color} hover:scale-105 transition-all duration-300 flex flex-col justify-between min-h-[180px]`}>
+                <div className="flex items-center mb-4">
+                  <span className="text-3xl mr-4">{cert.icon}</span>
+                  <div>
+                    <h4 className="text-xl font-semibold text-white">{cert.title}</h4>
+                    <p className="text-primary-300">{cert.provider}</p>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-300">Status:</span>
+                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                    cert.status === 'Completed' ? 'bg-green-500/20 text-green-300' :
+                    cert.status === 'In Progress' ? 'bg-blue-500/20 text-blue-300' :
+                    cert.status === 'Advanced' ? 'bg-purple-500/20 text-purple-300' :
+                    'bg-pink-500/20 text-pink-300'
+                  }`}>
+                    {cert.status}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Interests & Hobbies */}
+        <div className="text-center pb-2 md:pb-4">
+          <h3 className="text-3xl font-bold text-white mb-10">
+            Interests & <span className="text-primary-400">Passions</span>
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4 mt-4">
+            {[
+              { name: 'Competitive Programming', icon: '⚡' },
+              { name: 'Open Source', icon: '🌐' },
+              { name: 'Tech Blogs', icon: '📚' },
+              { name: 'UI/UX Design', icon: '🎨' },
+              { name: 'Machine Learning', icon: '🤖' },
+              { name: 'Web Technologies', icon: '💻' },
+              { name: 'Problem Solving', icon: '🧩' },
+              { name: 'Innovation', icon: '💡' },
+              { name: 'Team Collaboration', icon: '🤝' },
+              { name: 'Continuous Learning', icon: '📈' }
+            ].map((interest, index) => (
+              <div key={index} className="glass-effect px-8 py-3 rounded-full hover:scale-110 transition-all duration-300 cursor-default mb-2">
+                <span className="text-lg mr-2">{interest.icon}</span>
+                <span className="text-white font-medium">{interest.name}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -172,7 +172,7 @@ const About = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16">
-          {/* Left Content - About Text & Skills */}
+          {/* Left Content - About Text only (Skills section removed) */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -232,55 +232,6 @@ const About = () => {
                 </p>
               </motion.div>
             </div>
-
-            {/* Enhanced Skills Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <h4 className="text-2xl font-bold mb-8 text-white flex items-center gap-3">
-                <span className="text-3xl">🛠️</span>
-                Skills & Expertise
-              </h4>
-              <div className="grid gap-6">
-                {skills.map((skill, index) => (
-                  <motion.div
-                    key={skill.name}
-                    className="glass-effect p-4 rounded-xl hover:scale-105 transition-all duration-300"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 * index }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -2 }}
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{skill.icon}</span>
-                        <span className="text-gray-300 font-medium text-lg">{skill.name}</span>
-                      </div>
-                      <span className="text-primary-400 font-bold text-lg">{skill.percentage}%</span>
-                    </div>
-                    <div className="w-full bg-dark-700 rounded-full h-3 overflow-hidden">
-                      <motion.div 
-                        className={`bg-gradient-to-r ${skill.color} h-3 rounded-full relative`}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.percentage}%` }}
-                        transition={{ duration: 1.5, delay: 0.2 * index, ease: "easeOut" }}
-                        viewport={{ once: true }}
-                      >
-                        <motion.div 
-                          className="absolute inset-0 bg-white/20 rounded-full"
-                          animate={{ x: [-100, 100] }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                        />
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Right Content - Education & Contact */}
@@ -372,72 +323,8 @@ const About = () => {
             </motion.div>
 
             {/* Enhanced Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <h4 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
-                <span className="text-3xl">📞</span>
-                Get In Touch
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                {[
-                  { label: 'Email', value: 'riddhimhadgut17@gmail.com', icon: '📧' },
-                  { label: 'Phone', value: '+91-910935647', icon: '📱' },
-                  { label: 'Location', value: 'Dewas, India', icon: '📍' },
-                  { label: 'Experience', value: '3+ Years', icon: '⭐' },
-                ].map((contact, index) => (
-                  <motion.div
-                    key={contact.label}
-                    className="glass-effect p-4 rounded-xl hover:scale-105 transition-all duration-300"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 * index }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -2 }}
-                  >
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xl">{contact.icon}</span>
-                      <p className="text-gray-400 font-medium">{contact.label}</p>
-                    </div>
-                    <p className="text-white font-semibold ml-8">{contact.value}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
 
             {/* Enhanced Download CV Button */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <motion.button
-                onClick={handleDownload}
-                className="w-full bg-gradient-to-r from-primary-500 via-purple-500 to-pink-500 hover:from-primary-600 hover:via-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg relative overflow-hidden"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                </motion.div>
-                <span>Download My Resume</span>
-                <motion.div 
-                  className="absolute inset-0 bg-white/10 rounded-2xl"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.6 }}
-                />
-              </motion.button>
-            </motion.div>
           </motion.div>
         </div>
       </div>
