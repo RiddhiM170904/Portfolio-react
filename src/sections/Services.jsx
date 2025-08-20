@@ -110,37 +110,37 @@ const Services = () => {
 
   return (
     <section id="services" className="py-20 bg-dark-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-4xl font-bold md:text-5xl">
             My <span className="text-primary-400">Services</span>
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto text-lg text-gray-300">
             I offer comprehensive UI/UX design services to help bring your digital products to life
           </p>
-          <div className="w-24 h-1 bg-primary-500 mx-auto mt-6"></div>
+          <div className="w-24 h-1 mx-auto mt-6 bg-primary-500"></div>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <div
               key={index}
-              className="group glass-effect p-8 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2"
+              className="p-8 transition-all duration-300 transform group glass-effect hover:bg-white/20 hover:-translate-y-2"
             >
               {/* Icon */}
-              <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="mb-6 text-6xl transition-transform duration-300 group-hover:scale-110">
                 {service.icon}
               </div>
 
               {/* Title */}
-              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary-400 transition-colors duration-300">
+              <h3 className="mb-4 text-2xl font-bold text-white transition-colors duration-300 group-hover:text-primary-400">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray-300 mb-6 leading-relaxed">
+              <p className="mb-6 leading-relaxed text-gray-300">
                 {service.description}
               </p>
 
@@ -148,7 +148,7 @@ const Services = () => {
               <ul className="space-y-2">
                 {service.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-center text-gray-400">
-                    <svg className="w-4 h-4 text-primary-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="flex-shrink-0 w-4 h-4 mr-2 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                     {feature}
@@ -157,14 +157,14 @@ const Services = () => {
               </ul>
 
               {/* Hover Effect Border */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary-500/50 transition-colors duration-300 pointer-events-none"></div>
+              <div className="absolute inset-0 transition-colors duration-300 border-2 border-transparent pointer-events-none rounded-2xl group-hover:border-primary-500/50"></div>
             </div>
           ))}
         </div>
 
         {/* Floating Bubbles Skills Section */}
         <motion.div 
-          className="mt-32 mb-20 relative overflow-hidden"
+          className="relative mt-32 mb-20 overflow-hidden"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -173,22 +173,22 @@ const Services = () => {
           </motion.div>
           {/* Skills Header */}
           <motion.div 
-            className="text-center mb-0 pb-0 relative z-10"
+            className="relative z-10 pb-0 mb-0 text-center"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-0 pb-0">
+            <h2 className="pb-0 mb-0 text-4xl font-bold md:text-5xl">
               My <span className="text-primary-400">Skills</span> 
             </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-0 pb-0" style={{marginBottom: '-8px'}}>
+            <p className="max-w-2xl pb-0 mx-auto mb-0 text-lg text-gray-300" style={{marginBottom: '-8px'}}>
               Explore my technical skills floating in a dynamic digital space
             </p>
           </motion.div>
 
           {/* Floating Background Bubbles */}
-          <div className="absolute inset-0 overflow-hidden">
+          <div className="inset-0 overflow-hidden ">
             {[...Array(10)].map((_, i) => (
               <motion.div
                 key={`bg-bubble-${i}`}
@@ -218,10 +218,10 @@ const Services = () => {
 
           {/* Main Skills Bubbles Container with wider glassy background */}
           <div className="relative min-h-[600px] flex items-center justify-center">
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
               <div className="w-[900px] h-[420px] bg-gradient-to-br from-purple-400/20 via-indigo-500/20 to-primary-400/20 rounded-2xl shadow-2xl backdrop-blur-2xl border border-white/10" style={{ filter: 'blur(0px)' }}></div>
             </div>
-            <div className="relative w-full max-w-8xl mx-auto px-2 md:px-4 z-10 flex flex-wrap justify-center items-center md:block" style={{ minHeight: '320px' }}>
+            <div className="relative z-10 flex flex-wrap items-center justify-center w-full px-2 mx-auto max-w-8xl md:px-4 md:block" style={{ minHeight: '320px' }}>
               {/* Glassy Skills Bubble with Dragger and Animated Movement */}
               {/* Bubble rendering */}
               {skills.map((skill, index) => {
@@ -307,11 +307,11 @@ const Services = () => {
                         delay: index * 0.2
                       }}
                     >
-                      <div className="relative z-10 text-center flex flex-col items-center justify-center select-none">
+                      <div className="relative z-10 flex flex-col items-center justify-center text-center select-none">
                         <div className={`${skill.size === 'small' ? 'text-lg' : skill.size === 'medium' ? 'text-xl' : 'text-2xl'} mb-1 text-white/90`}>
                           {React.createElement(skill.icon)}
                         </div>
-                        <div className="text-white font-bold leading-tight text-xs md:text-sm mt-1">{skill.name}</div>
+                        <div className="mt-1 text-xs font-bold leading-tight text-white md:text-sm">{skill.name}</div>
                       </div>
                     </motion.div>
                   </motion.div>
@@ -321,53 +321,53 @@ const Services = () => {
           </div>
 
           {/* Availability & Status */}
-          <div className="glass-effect p-8 rounded-2xl text-center">
-            <h3 className="text-3xl font-bold text-white mb-6">
+          <div className="p-8 text-center glass-effect rounded-2xl">
+            <h3 className="mb-6 text-3xl font-bold text-white">
               Current <span className="text-primary-400">Status</span>
             </h3>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid gap-6 md:grid-cols-3">
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center text-3xl mb-4">
+                <div className="flex items-center justify-center w-16 h-16 mb-4 text-3xl rounded-full bg-green-500/20">
                   🟢
                 </div>
-                <h4 className="text-xl font-semibold text-white mb-2">Available for Work</h4>
+                <h4 className="mb-2 text-xl font-semibold text-white">Available for Work</h4>
                 <p className="text-gray-300">Open to internships and entry-level positions</p>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center text-3xl mb-4">
+                <div className="flex items-center justify-center w-16 h-16 mb-4 text-3xl rounded-full bg-blue-500/20">
                   🎓
                 </div>
-                <h4 className="text-xl font-semibold text-white mb-2">Currently Studying</h4>
+                <h4 className="mb-2 text-xl font-semibold text-white">Currently Studying</h4>
                 <p className="text-gray-300">B.Tech Computer Science at VIT Bhopal</p>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center text-3xl mb-4">
+                <div className="flex items-center justify-center w-16 h-16 mb-4 text-3xl rounded-full bg-purple-500/20">
                   💼
                 </div>
-                <h4 className="text-xl font-semibold text-white mb-2">Seeking Opportunities</h4>
+                <h4 className="mb-2 text-xl font-semibold text-white">Seeking Opportunities</h4>
                 <p className="text-gray-300">Internships, projects, and collaborations</p>
               </div>
             </div>
           </div>
         </div>
       {/* Call to Action */}
-      <div className="text-center mt-24 mb-12 px-4 md:px-0">
-        <p className="text-gray-300 text-lg mb-8">
+      <div className="px-4 mt-24 mb-12 text-center md:px-0">
+        <p className="mb-8 text-lg text-gray-300">
           Ready to start your project? Let's work together to create something amazing.
         </p>
-        <button className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white px-10 py-4 rounded-full font-medium transition-all duration-200 transform hover:scale-105 text-lg shadow-lg" >
+        <button className="px-10 py-4 text-lg font-medium text-white transition-all duration-200 transform rounded-full shadow-lg bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 hover:scale-105" >
           Get Started Today
         </button>
       </div>
 
       {/* Additional Resume Sections */}
-  <div className="mt-24 space-y-24 px-2 md:px-0">
+  <div className="px-2 mt-24 space-y-24 md:px-0">
         {/* Achievements & Recognition */}
-        <div className="text-center pb-2 md:pb-4">
-          <h3 className="text-3xl font-bold text-white mb-10">
+        <div className="pb-2 text-center md:pb-4">
+          <h3 className="mb-10 text-3xl font-bold text-white">
             Achievements & <span className="text-primary-400">Recognition</span>
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 m-5">
+          <div className="grid gap-8 m-5 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 icon: '🏆',
@@ -410,7 +410,7 @@ const Services = () => {
                 <div className={`w-16 h-16 bg-gradient-to-br ${achievement.color} rounded-full flex items-center justify-center text-2xl mx-auto mb-4`}>
                   {achievement.icon}
                 </div>
-                <h4 className="text-xl font-semibold text-white mb-2">{achievement.title}</h4>
+                <h4 className="mb-2 text-xl font-semibold text-white">{achievement.title}</h4>
                 <p className="text-gray-300">{achievement.description}</p>
               </div>
             ))}
@@ -418,11 +418,11 @@ const Services = () => {
         </div>
 
         {/* Certifications & Learning */}
-        <div className="text-center pb-2 md:pb-4">
-          <h3 className="text-3xl font-bold text-white mb-10">
+        <div className="pb-2 text-center md:pb-4">
+          <h3 className="mb-10 text-3xl font-bold text-white">
             Certifications & <span className="text-primary-400">Learning</span>
           </h3>
-          <div className="grid md:grid-cols-2 gap-8 m-5">
+          <div className="grid gap-8 m-5 md:grid-cols-2">
             {[
               {
                 icon: '📜',
@@ -455,13 +455,13 @@ const Services = () => {
             ].map((cert, index) => (
               <div key={index} className={`glass-effect p-10 my-4 rounded-2xl border-l-4 ${cert.color} hover:scale-105 transition-all duration-300 flex flex-col justify-between min-h-[180px]`}>
                 <div className="flex items-center mb-4">
-                  <span className="text-3xl mr-4">{cert.icon}</span>
+                  <span className="mr-4 text-3xl">{cert.icon}</span>
                   <div>
                     <h4 className="text-xl font-semibold text-white">{cert.title}</h4>
                     <p className="text-primary-300">{cert.provider}</p>
                   </div>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex items-center justify-between">
                   <span className="text-gray-300">Status:</span>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                     cert.status === 'Completed' ? 'bg-green-500/20 text-green-300' :
@@ -478,8 +478,8 @@ const Services = () => {
         </div>
 
         {/* Interests & Hobbies */}
-        <div className="text-center pb-2 md:pb-4">
-          <h3 className="text-3xl font-bold text-white mb-10">
+        <div className="pb-2 text-center md:pb-4">
+          <h3 className="mb-10 text-3xl font-bold text-white">
             Interests & <span className="text-primary-400">Passions</span>
           </h3>
           <div className="flex flex-wrap justify-center gap-4 mt-4">
@@ -495,9 +495,9 @@ const Services = () => {
               { name: 'Team Collaboration', icon: '🤝' },
               { name: 'Continuous Learning', icon: '📈' }
             ].map((interest, index) => (
-              <div key={index} className="glass-effect px-8 py-3 rounded-full hover:scale-110 transition-all duration-300 cursor-default mb-2">
-                <span className="text-lg mr-2">{interest.icon}</span>
-                <span className="text-white font-medium">{interest.name}</span>
+              <div key={index} className="px-8 py-3 mb-2 transition-all duration-300 rounded-full cursor-default glass-effect hover:scale-110">
+                <span className="mr-2 text-lg">{interest.icon}</span>
+                <span className="font-medium text-white">{interest.name}</span>
               </div>
             ))}
           </div>
@@ -506,10 +506,10 @@ const Services = () => {
 
       {/* Background Decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-10 w-2 h-2 bg-primary-400 rounded-full animate-pulse"></div>
-        <div className="absolute top-1/3 right-20 w-1 h-1 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute w-2 h-2 rounded-full top-1/4 left-10 bg-primary-400 animate-pulse"></div>
+        <div className="absolute w-1 h-1 bg-purple-400 rounded-full top-1/3 right-20 animate-pulse" style={{animationDelay: '1s'}}></div>
         <div className="absolute bottom-1/4 left-1/4 w-1.5 h-1.5 bg-pink-400 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-1/3 right-1/3 w-1 h-1 bg-yellow-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute w-1 h-1 bg-yellow-400 rounded-full bottom-1/3 right-1/3 animate-pulse" style={{animationDelay: '0.5s'}}></div>
       </div>
     </section>
   );
