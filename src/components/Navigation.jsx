@@ -21,11 +21,20 @@ const Navigation = () => {
   ];
 
   const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // Only handle internal links (starting with #)
+    if (href && href.startsWith('#')) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // fallback: set hash, browser will jump
+        window.location.hash = href;
+      }
+      setIsMobileMenuOpen(false);
+    } else if (href) {
+      // For external links, open in new tab
+      window.open(href, '_blank');
     }
-    setIsMobileMenuOpen(false);
   };
 
   return (

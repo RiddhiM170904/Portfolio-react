@@ -121,15 +121,33 @@ const Contact = () => {
             <div className="mt-8">
               <h4 className="text-white font-semibold mb-4">Follow Me</h4>
               <div className="flex space-x-4">
-                {['📷', '💼', '🐦', '👨‍💻'].map((icon, index) => (
-                  <a
-                    key={index}
-                    href="#"
-                    className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
-                  >
-                    {icon}
-                  </a>
-                ))}
+                {/* Social links with real URLs */}
+                <a
+                  href="https://instagram.com/yourusername"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
+                  title="Instagram"
+                >📷</a>
+                <a
+                  href="https://www.linkedin.com/in/riddhi-mhadgut-3b0a21289/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
+                  title="LinkedIn"
+                >💼</a>
+                <a
+                  href="mailto:riddhimhadgut@gmail.com"
+                  className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
+                  title="Gmail"
+                >🐦</a>
+                <a
+                  href="https://github.com/RiddhiM170904"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
+                  title="GitHub"
+                >👨‍💻</a>
               </div>
             </div>
           </div>

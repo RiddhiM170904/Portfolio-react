@@ -51,21 +51,33 @@ const Footer = () => {
 
             {/* Social Links */}
             <div className="flex space-x-4">
-              {[
-                { icon: '📷', name: 'Instagram' },
-                { icon: '💼', name: 'LinkedIn' },
-                { icon: '📧', name: 'Gmail' },
-                { icon: '👨‍💻', name: 'GitHub' }
-              ].map((social, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
-                  title={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
+              {/* Social links with real URLs */}
+              <a
+                href="https://instagram.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
+                title="Instagram"
+              >📷</a>
+              <a
+                href="https://www.linkedin.com/in/riddhi-mhadgut-3b0a21289/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
+                title="LinkedIn"
+              >💼</a>
+              <a
+                href="mailto:riddhimhadgut@gmail.com"
+                className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
+                title="Gmail"
+              >📧</a>
+              <a
+                href="https://github.com/RiddhiM170904"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
+                title="GitHub"
+              >👨‍💻</a>
             </div>
           </div>
 
@@ -75,12 +87,28 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-gray-300 hover:text-primary-400 transition-colors duration-200 text-left"
-                  >
-                    {link.name}
-                  </button>
+                  {link.href.startsWith('#') ? (
+                    <button
+                      onClick={() => {
+                        const el = document.querySelector(link.href);
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                          window.location.hash = link.href;
+                        }
+                      }}
+                      className="text-gray-300 hover:text-primary-400 transition-colors duration-200 text-left"
+                    >
+                      {link.name}
+                    </button>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-gray-300 hover:text-primary-400 transition-colors duration-200 text-left"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -131,10 +159,10 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center space-x-6">
-            <a href="#" className="text-gray-400 hover:text-primary-400 text-sm transition-colors duration-200">
+            <a href="/privacy-policy" className="text-gray-400 hover:text-primary-400 text-sm transition-colors duration-200">
               Privacy Policy
             </a>
-            <a href="#" className="text-gray-400 hover:text-primary-400 text-sm transition-colors duration-200">
+            <a href="/terms-of-service" className="text-gray-400 hover:text-primary-400 text-sm transition-colors duration-200">
               Terms of Service
             </a>
             
