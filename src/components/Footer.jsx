@@ -79,7 +79,7 @@ const Footer = () => {
                 title="GitHub"
               >👨‍💻</a>
               <a
-                href="https://leetcode.com/RiddhiM170904/"
+                href="https://leetcode.com/u/Riddhi_Mhadgut/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
