@@ -75,7 +75,7 @@ const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative gradient-bg overflow-hidden">
       {/* Animated background particles */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pointer-events-none">
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
