@@ -220,6 +220,12 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+                  onClick={e => {
+                    // Always allow default for mailto
+                    if (social.href.startsWith('mailto:')) return;
+                    e.preventDefault();
+                    window.open(social.href, '_blank', 'noopener,noreferrer');
+                  }}
                 >
                   {social.icon}
                 </motion.a>
