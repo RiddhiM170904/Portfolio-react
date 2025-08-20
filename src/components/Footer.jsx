@@ -78,6 +78,13 @@ const Footer = () => {
                 className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
                 title="GitHub"
               >👨‍💻</a>
+              <a
+                href="https://leetcode.com/RiddhiM170904/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
+                title="LeetCode"
+              >🧩</a>
             </div>
           </div>
 

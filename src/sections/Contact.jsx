@@ -59,6 +59,12 @@ const Contact = () => {
       title: 'GitHub',
       value: 'Username- RiddhiM170904',
       description: 'Check out my code and projects'
+    },
+    {
+      icon: '🧩',
+      title: 'LeetCode',
+      value: 'Username- RiddhiM170904',
+      description: 'See my coding profile'
     }
   ];
 
@@ -112,6 +118,16 @@ const Contact = () => {
                         See Profile
                       </a>
                     )}
+                    {info.title === 'LeetCode' && (
+                      <a
+                        href="https://leetcode.com/RiddhiM170904/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                      >
+                        See Profile
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
@@ -140,7 +156,7 @@ const Contact = () => {
                   href="mailto:riddhimhadgut@gmail.com"
                   className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
                   title="Gmail"
-                >🐦</a>
+                >�</a>
                 <a
                   href="https://github.com/RiddhiM170904"
                   target="_blank"
@@ -148,6 +164,13 @@ const Contact = () => {
                   className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
                   title="GitHub"
                 >👨‍💻</a>
+                <a
+                  href="https://leetcode.com/RiddhiM170904/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
+                  title="LeetCode"
+                >🧩</a>
               </div>
             </div>
           </div>
