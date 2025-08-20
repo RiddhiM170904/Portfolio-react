@@ -53,7 +53,7 @@ const Footer = () => {
             <div className="flex space-x-4">
               {/* Social links with real URLs */}
               <a
-                href="https://instagram.com/yourusername"
+                href="https://www.instagram.com/riddhi_mdt"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
