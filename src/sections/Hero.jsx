@@ -213,7 +213,7 @@ const Hero = () => {
                   href={social.href}
                   target={social.href.startsWith('mailto:') ? '_self' : '_blank'}
                   rel={social.href.startsWith('mailto:') ? '' : 'noopener noreferrer'}
-                  className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200"
+                  className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-200 pointer-events-auto"
                   title={social.name}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
