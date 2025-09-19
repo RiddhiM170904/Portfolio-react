@@ -179,10 +179,10 @@ const Services = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="pb-0 mb-0 text-4xl font-bold md:text-5xl">
+            <h2 className="pb-0 mb-4 text-4xl font-bold md:text-5xl">
               My <span className="text-primary-400">Skills</span> 
             </h2>
-            <p className="max-w-2xl pb-0 mx-auto mb-0 text-lg text-gray-300" style={{marginBottom: '-8px'}}>
+            <p className="max-w-2xl pb-0 mx-auto mb-0 text-lg text-gray-300" style={{marginTop: '12px', marginBottom: '-8px'}}>
               Explore my technical skills floating in a dynamic digital space
             </p>
           </motion.div>
