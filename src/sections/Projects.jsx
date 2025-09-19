@@ -27,7 +27,7 @@ const Projects = () => {
             description: 'A comprehensive platform showcasing the beauty and culture of the Konkan region with interactive features and detailed information.',
             image: hundredDaysproject,
             tags: ['React', 'Tourism', 'Cultural Heritage'],
-            year: '2024',
+            year: '2025',
             client: 'Personal Project',
             githubUrl: 'https://github.com/RiddhiM170904/My-Konkan',
             websiteUrl: 'https://konkandiaries.vercel.app/' // Add your deployed URL here
