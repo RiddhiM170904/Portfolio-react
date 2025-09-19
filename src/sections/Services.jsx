@@ -14,7 +14,7 @@ const Services = () => {
   const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
   // Clamp initial positions so bubbles always start fully inside the box
   const skills = [
-    { name: 'React', icon: FaReact, x: -300, y: -80, size: 'large' },
+    { name: 'React', icon: FaReact, x: -300, y: -90, size: 'large' },
     { name: 'Node.js', icon: FaNodeJs, x: -150, y: -120, size: 'large' },
     { name: 'HTML5', icon: FaHtml5, x: 0, y: -140, size: 'large' },
     { name: 'CSS3', icon: FaCss3Alt, x: 150, y: -120, size: 'large' },
@@ -24,9 +24,9 @@ const Services = () => {
     { name: 'Git', icon: FaGitAlt, x: 75, y: 0, size: 'medium' },
     { name: 'Figma', icon: FaFigma, x: 225, y: 0, size: 'medium' },
     { name: 'C++', icon: SiCplusplus, x: -300, y: 100, size: 'medium' },
-    { name: 'Tailwind', icon: SiTailwindcss, x: -150, y: 140, size: 'medium' },
-    { name: 'Canva', icon: SiCanva, x: 0, y: 160, size: 'medium' },
-    { name: 'AWS', icon: FaAws, x: 150, y: 140, size: 'medium' },
+    { name: 'Tailwind', icon: SiTailwindcss, x: -150, y: 80, size: 'medium' },
+    { name: 'Canva', icon: SiCanva, x: 0, y: 100, size: 'medium' },
+    { name: 'AWS', icon: FaAws, x: 150, y: 80, size: 'medium' },
     { name: 'TypeScript', icon: FaJs, x: 300, y: 100, size: 'medium' },
   ].map(skill => {
     const pxSize = pxSizes[skill.size];
@@ -219,9 +219,10 @@ const Services = () => {
           {/* Main Skills Bubbles Container with wider glassy background */}
           <div className="relative min-h-[600px] flex items-center justify-center">
             <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[900px] h-[420px] bg-gradient-to-br from-purple-400/20 via-indigo-500/20 to-primary-400/20 rounded-2xl shadow-2xl backdrop-blur-2xl border border-white/10" style={{ filter: 'blur(0px)' }}></div>
+              <div className="w-[900px] h-[420px] bg-gradient-to-br from-purple-400/30 via-indigo-500/30 to-primary-400/30 rounded-2xl shadow-2xl backdrop-blur-2xl border border-white/20" style={{ filter: 'blur(0px)' }}></div>
             </div>
-            <div className="relative z-10 flex flex-wrap items-center justify-center w-full px-2 mx-auto max-w-8xl md:px-4 md:block" style={{ minHeight: '320px' }}>
+            {/* Skills bubbles container with proper overflow handling */}
+            <div className="relative z-10 w-[900px] h-[420px] mx-auto overflow-hidden rounded-2xl" style={{ position: 'relative' }}>
               {/* Glassy Skills Bubble with Dragger and Animated Movement */}
               {/* Bubble rendering */}
               {skills.map((skill, index) => {
@@ -265,11 +266,24 @@ const Services = () => {
                     }}
                   >
                     <motion.div
-                      className={`${sizes[skill.size]} flex flex-col items-center justify-center border-2 border-white/20 relative overflow-hidden bg-gradient-to-br from-purple-400/30 to-indigo-500/30 rounded-full shadow-lg`}
+                      className={`${sizes[skill.size]} flex flex-col items-center justify-center border-2 border-white/40 relative overflow-hidden rounded-full shadow-2xl`}
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.6) 0%, rgba(139, 92, 246, 0.5) 50%, rgba(124, 58, 237, 0.6) 100%)',
+                        boxShadow: '0 8px 32px rgba(168, 85, 247, 0.4), 0 4px 16px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4)',
+                        cursor: isDragging ? 'grabbing' : 'grab',
+                        userSelect: 'none',
+                        pointerEvents: 'auto',
+                        backdropFilter: 'blur(10px)',
+                      }}
                       drag
                       dragMomentum={false}
-                      dragElastic={0.2}
-                      dragConstraints={dragConstraints}
+                      dragElastic={0.1}
+                      dragConstraints={{
+                        left: -maxX,
+                        right: maxX,
+                        top: -maxY,
+                        bottom: maxY
+                      }}
                       onDragStart={() => setBubbleStates(prev => {
                         const copy = [...prev];
                         copy[index] = { ...copy[index], isDragging: true };
@@ -286,32 +300,46 @@ const Services = () => {
                         };
                         return copy;
                       })}
-                      style={{
-                        boxShadow: '0 2px 8px 0 rgba(168,85,247,0.10)',
-                        cursor: isDragging ? 'grabbing' : 'grab',
-                        userSelect: 'none',
-                        pointerEvents: 'auto',
+                      whileHover={isDragging ? {} : { 
+                        scale: 1.15, 
+                        rotate: 8,
+                        boxShadow: '0 16px 50px rgba(168, 85, 247, 0.5), 0 8px 25px rgba(139, 92, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
                       }}
-                      whileHover={isDragging ? {} : { scale: 1.13, rotate: 8 }}
                       whileTap={{ scale: 0.95 }}
                       animate={{
-                        y: [0, -floatRangeY, 0, floatRangeY, 0],
-                        x: [0, floatRangeX, 0, -floatRangeX, 0],
-                        scale: [1, 1.07, 1, 0.97, 1],
+                        y: isDragging ? 0 : [0, -floatRangeY * 0.8, 0, floatRangeY * 0.8, 0],
+                        x: isDragging ? 0 : [0, floatRangeX * 0.8, 0, -floatRangeX * 0.8, 0],
+                        scale: isDragging ? 1 : [1, 1.05, 1, 0.98, 1],
                       }}
                       transition={{
-                        duration: 6 + index * 0.5,
-                        repeat: Infinity,
+                        duration: 8 + index * 0.3,
+                        repeat: isDragging ? 0 : Infinity,
                         repeatType: 'loop',
                         ease: 'easeInOut',
-                        delay: index * 0.2
+                        delay: index * 0.3
                       }}
                     >
+                      {/* Shine effect overlay */}
+                      <motion.div
+                        className="absolute inset-0 rounded-full pointer-events-none"
+                        style={{
+                          background: 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%)',
+                        }}
+                        animate={{
+                          x: [-100, 100],
+                          opacity: [0, 0.8, 0],
+                        }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          repeatDelay: 3 + index * 0.3,
+                          ease: "easeInOut"
+                        }}
+                      />
                       <div className="relative z-10 flex flex-col items-center justify-center text-center select-none">
-                        <div className={`${skill.size === 'small' ? 'text-lg' : skill.size === 'medium' ? 'text-xl' : 'text-2xl'} mb-1 text-white/90`}>
+                        <div className={`${skill.size === 'small' ? 'text-2xl' : skill.size === 'medium' ? 'text-3xl' : 'text-4xl'} text-white drop-shadow-md filter`}>
                           {React.createElement(skill.icon)}
                         </div>
-                        <div className="mt-1 text-xs font-bold leading-tight text-white md:text-sm">{skill.name}</div>
                       </div>
                     </motion.div>
                   </motion.div>
