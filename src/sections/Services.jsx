@@ -406,7 +406,7 @@ const Services = () => {
               {
                 icon: '💡',
                 title: 'Problem Solver',
-                description: 'Solved 100+ coding problems on various platforms',
+                description: 'Solved 300+ coding problems on various platforms',
                 color: 'from-blue-400 to-cyan-500'
               },
               {
