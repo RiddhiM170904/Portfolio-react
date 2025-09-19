@@ -37,20 +37,7 @@ const Contact = () => {
       description: 'Send me an email anytime',
       url: 'mailto:riddhimhadgut17@gmail.com'
     },
-    {
-      icon: '📱',
-      title: 'Phone',
-      value: '+91-9109356746',
-      description: 'Call me for urgent matters',
-      url: null
-    },
-    {
-      icon: '📍',
-      title: 'Location',
-      value: 'Dewas, India',
-      description: 'Available for local meetings',
-      url: null
-    },
+    
     {
       icon: '💼',
       title: 'LinkedIn',
