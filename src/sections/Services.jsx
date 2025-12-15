@@ -98,7 +98,7 @@ const Services = () => {
       icon: '🏆',
       title: 'Hackathon Experience',
       description: 'Applying design and coding skills to real-world problem statements.',
-      features: ['🥇 Smart India Hackathon 2024 – Internal Hackathon Winning Team', 'Fast-paced UI/UX Design + Frontend Implementation', 'Ideation, Collaboration & Final Pitching', 'Creating Scalable, User-Focused Prototypes']
+      features: ['🥇 Smart India Hackathon 2025 – Grand Finalists', 'Fast-paced UI/UX Design + Frontend Implementation', 'Ideation, Collaboration & Final Pitching', 'Creating Scalable, User-Focused Prototypes']
     },
     {
       icon: '🎨',
