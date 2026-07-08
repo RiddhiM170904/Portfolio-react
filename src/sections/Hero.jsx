@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import { FiDownload, FiArrowRight } from 'react-icons/fi';
@@ -174,7 +175,13 @@ const AchievementTicker = () => {
 
 /* ── Hero ───────────────────────────────────────────────────── */
 const Hero = () => {
-  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+  const goToProjects = () => {
+    navigate('/projects');
+    setTimeout(() => {
+      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  };
 
   return (
     <section id="home" className="relative flex flex-col min-h-screen overflow-hidden bg-dark-900">
@@ -278,7 +285,7 @@ const Hero = () => {
               className="flex flex-wrap gap-4"
             >
               <motion.button
-                onClick={() => scrollTo('projects')}
+                onClick={goToProjects}
                 className="btn-primary"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
