@@ -209,7 +209,7 @@ const ProjectCard = ({ project, index }) => {
 };
 
 /* ── Projects ────────────────────────────────────────────────── */
-const Projects = () => {
+const Projects = ({ standalone = false }) => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
   const lineH = useSpring(useTransform(scrollYProgress, [0, 1], ['0%', '100%']), { stiffness: 100, damping: 30 });
@@ -217,7 +217,7 @@ const Projects = () => {
   const lineGlow = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="projects" className="py-20 md:py-28 relative overflow-hidden">
+    <section id="projects" className={`py-20 md:py-28 relative overflow-hidden${standalone ? ' pt-32 md:pt-36 min-h-screen' : ''}`}>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(232,121,249,0.06),transparent)] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 

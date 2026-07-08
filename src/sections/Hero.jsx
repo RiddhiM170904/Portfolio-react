@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import { FiDownload, FiArrowRight } from 'react-icons/fi';
-import { FaTrophy, FaFileAlt } from 'react-icons/fa';
+import { FaTrophy, FaFileAlt, FaStar, FaGraduationCap, FaCode } from 'react-icons/fa';
 
 /* ── Typewriter ─────────────────────────────────────────────── */
 const ROLES = [
@@ -140,12 +141,44 @@ const Badge = ({ icon: Icon, text, color = 'primary', delay }) => {
   );
 };
 
+/* ── Achievements Ticker ─────────────────────────────────────── */
+const ACHIEVEMENTS = [
+  { icon: FaGraduationCap, text: 'CGPA 9.07 · VIT Bhopal',       color: '#34d399' },
+  { icon: FaTrophy,        text: 'SIH 2025 National Finalist',    color: '#e879f9' },
+  { icon: FaFileAlt,       text: 'Published Patent Holder',        color: '#f59e0b' },
+  { icon: FaCode,          text: '380+ LeetCode · Rating 1513',   color: '#a78bfa' },
+  { icon: FaStar,          text: 'SSoC 2025 Project Admin',        color: '#60a5fa' },
+  { icon: FaTrophy,        text: '11+ Production Apps Shipped',    color: '#fb923c' },
+  { icon: FaCode,          text: '750+ GitHub Contributions',      color: '#34d399' },
+  { icon: FaStar,          text: 'Oracle Cloud Data Science Pro',  color: '#f43f5e' },
+];
+
+const AchievementTicker = () => {
+  const doubled = [...ACHIEVEMENTS, ...ACHIEVEMENTS];
+  return (
+    <div className="overflow-hidden relative py-3 border-y border-white/5 bg-white/[0.02] marquee-fade">
+      <div className="flex animate-marquee">
+        {doubled.map((a, i) => (
+          <div
+            key={i}
+            className="flex items-center gap-2 px-6 flex-shrink-0 text-xs font-mono"
+          >
+            <a.icon style={{ color: a.color }} className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="text-gray-400 whitespace-nowrap">{a.text}</span>
+            <span className="text-gray-700 mx-2">·</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 /* ── Hero ───────────────────────────────────────────────────── */
 const Hero = () => {
-  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
 
   return (
-    <section id="home" className="relative flex items-center min-h-screen overflow-hidden bg-dark-900">
+    <section id="home" className="relative flex flex-col min-h-screen overflow-hidden bg-dark-900">
       {/* Ambient background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary-500/10 rounded-full blur-[120px]" />
@@ -156,8 +189,19 @@ const Hero = () => {
 
       <ParticleCanvas />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+      {/* Achievements Ticker — just below nav */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="relative z-10 mt-16"
+      >
+        <AchievementTicker />
+      </motion.div>
+
+      {/* Main hero content */}
+      <div className="relative z-10 flex-1 flex items-center w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid items-center gap-12 lg:grid-cols-2 w-full">
 
           {/* ── Left ── */}
           <motion.div
@@ -175,8 +219,8 @@ const Hero = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 Available for Opportunities
               </div>
-              <Badge icon={FaTrophy}  text="SIH 2025 Runner-Up"  color="primary" delay={0.2} />
-              <Badge icon={FaFileAlt} text="Patent Holder"        color="amber"   delay={0.35} />
+              <Badge icon={FaTrophy}  text="SIH 2025 Finalist"  color="primary" delay={0.2} />
+              <Badge icon={FaFileAlt} text="Patent Holder"       color="amber"   delay={0.35} />
             </motion.div>
 
             {/* Greeting + Name */}
@@ -207,8 +251,8 @@ const Hero = () => {
               className="text-gray-400 text-base leading-relaxed max-w-lg border-l-2 border-primary-400/40 pl-4"
             >
               B.Tech CSE @ VIT Bhopal (<span className="text-primary-300 font-semibold">CGPA 9.07</span>). Shipped{' '}
-              <span className="text-primary-300 font-semibold">11+</span> production apps using React.js, Node.js, Python &
-              TensorFlow. Published Patent holder & SIH 2025 National Runner-Up.{' '}
+              <span className="text-primary-300 font-semibold">11+</span> production apps using React.js, Node.js, Python &amp;
+              TensorFlow. Published Patent holder &amp; SIH 2025 National Finalist.{' '}
               <span className="text-primary-300 font-semibold">380+</span> LeetCode problems (Rating: 1513).
             </motion.p>
 
@@ -235,7 +279,7 @@ const Hero = () => {
               className="flex flex-wrap gap-4"
             >
               <motion.button
-                onClick={() => scrollTo('projects')}
+                onClick={() => navigate('/projects')}
                 className="btn-primary"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -374,22 +418,22 @@ const Hero = () => {
             </div>
           </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
-        >
-          <span className="text-[10px] tracking-[0.25em] text-gray-600 font-mono uppercase">scroll</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-px h-8 bg-gradient-to-b from-primary-400/60 to-transparent"
-          />
-        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="relative z-10 pb-8 flex flex-col items-center gap-1"
+      >
+        <span className="text-[10px] tracking-[0.25em] text-gray-600 font-mono uppercase">explore</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-px h-8 bg-gradient-to-b from-primary-400/60 to-transparent"
+        />
+      </motion.div>
     </section>
   );
 };

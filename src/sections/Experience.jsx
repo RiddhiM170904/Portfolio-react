@@ -149,8 +149,8 @@ const AchCard = ({ data, index }) => (
 );
 
 /* ── Experience ──────────────────────────────────────────────── */
-const Experience = () => (
-  <section id="experience" className="py-20 md:py-28 bg-dark-800/40 relative overflow-hidden">
+const Experience = ({ standalone = false }) => (
+  <section id="experience" className={`py-20 md:py-28 bg-dark-800/40 relative overflow-hidden${standalone ? ' pt-32 md:pt-36 min-h-screen' : ''}`}>
     <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
     <div className="absolute top-0 left-0 w-72 h-72 bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
 

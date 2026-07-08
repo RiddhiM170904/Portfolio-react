@@ -143,15 +143,16 @@ const CertCard = ({ data, index, inView }) => {
 };
 
 /* ── About ──────────────────────────────────────────────────── */
-const About = () => {
+const About = ({ standalone = false }) => {
   const ref = useRef(null);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(standalone); // on standalone pages, start visible
 
   useEffect(() => {
+    if (standalone) return; // skip observer if full-page route
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setInView(true); }, { threshold: 0.1 });
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
-  }, []);
+  }, [standalone]);
 
   const stats = [
     { number: 11,  suffix: '+', label: 'Projects',         icon: FaProjectDiagram, color: '#e879f9', delay: 0 },
@@ -215,7 +216,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-dark-800/40 relative overflow-hidden">
+    <section id="about" className={`py-20 md:py-28 bg-dark-800/40 relative overflow-hidden${standalone ? ' pt-32 md:pt-36 min-h-screen' : ''}`}>
       <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
       <div className="absolute top-0 left-1/3 w-72 h-72 bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/3 w-72 h-72 bg-violet-600/6 rounded-full blur-3xl pointer-events-none" />

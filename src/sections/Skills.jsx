@@ -85,8 +85,8 @@ const MarqueeRow = ({ skills, dir = 'left' }) => {
   );
 };
 
-const Skills = () => (
-  <section id="skills" className="py-20 md:py-28 relative overflow-hidden">
+const Skills = ({ standalone = false }) => (
+  <section id="skills" className={`py-20 md:py-28 relative overflow-hidden${standalone ? ' pt-32 md:pt-36 min-h-screen' : ''}`}>
     <div className="absolute top-0 left-1/3 w-80 h-80 bg-primary-500/8 rounded-full blur-3xl pointer-events-none" />
     <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-violet-600/8 rounded-full blur-3xl pointer-events-none" />
 

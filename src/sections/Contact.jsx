@@ -17,7 +17,7 @@ const CONTACT_INFO = [
   { icon: FaMapMarkerAlt,  label: 'Location', value: 'Dewas, Madhya Pradesh, India', href: null },
 ];
 
-const Contact = () => {
+const Contact = ({ standalone = false }) => {
   const [form, setForm]     = useState({ name: '', email: '', subject: '', message: '' });
   const [sent, setSent]     = useState(false);
   const [loading, setLoad]  = useState(false);
@@ -34,7 +34,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-dark-800/40 relative overflow-hidden">
+    <section id="contact" className={`py-20 md:py-28 bg-dark-800/40 relative overflow-hidden${standalone ? ' pt-32 md:pt-36 min-h-screen' : ''}`}>
       <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-violet-600/6 rounded-full blur-3xl pointer-events-none" />
