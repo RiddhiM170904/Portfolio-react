@@ -1,168 +1,114 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaHeart } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
+
+const LINKS = [
+  { label: 'Home',       href: '#home' },
+  { label: 'About',      href: '#about' },
+  { label: 'Skills',     href: '#skills' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects',   href: '#projects' },
+  { label: 'Contact',    href: '#contact' },
+];
+
+const SOCIALS = [
+  { icon: FaGithub,    href: 'https://github.com/RiddhiM170904',                  label: 'GitHub' },
+  { icon: FaLinkedin,  href: 'https://linkedin.com/in/riddhi-mhadgut-3b0a21289', label: 'LinkedIn' },
+  { icon: FaInstagram, href: 'https://instagram.com/riddhi_mdt',                 label: 'Instagram' },
+  { icon: SiLeetcode,  href: 'https://leetcode.com/u/Riddhi_Mhadgut/',           label: 'LeetCode' },
+  { icon: FaEnvelope,  href: 'mailto:riddhimhadgut17@gmail.com',                 label: 'Email' },
+];
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
-  ];
-
-  const services = [
-    'Frontend Development',
-    'Open Source Design Contributions',
-    'DSA & Coding',
-    'Web Design',
-    'Hackathon Experience',
-    'UI/UX Design'
-  ];
-
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollTo = (href) => {
+    const id = href.slice(1);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <footer className="bg-dark-900 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
-        <div className="py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand Section */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">R</span>
+    <footer className="relative bg-dark-950 border-t border-white/8 overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-primary-500/8 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+        <div className="grid md:grid-cols-3 gap-8 mb-10">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-400 to-violet-500 flex items-center justify-center text-dark-900 font-bold font-mono text-sm shadow-[0_0_15px_rgba(232,121,249,0.4)]">
+                R
               </div>
-              <span className="ml-3 text-xl font-bold text-white">Riddhi Mhadgut</span>
+              <span className="font-bold text-white text-lg">Riddhi<span className="text-primary-400">.</span></span>
             </div>
-            
-            <p className="text-gray-300 text-lg leading-relaxed mb-6 max-w-md">
-              I’m a Computer Science and Engineering student passionate about web development, UI/UX design, and problem-solving through code. I enjoy building impactful digital solutions, participating in hackathons, and exploring AI-driven innovations.
+            <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
+              Full-Stack Developer & AI/ML Engineer. Building production-grade web apps and intelligent systems.
             </p>
-
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              {/* Social links with real URLs */}
-              <a
-                href="https://www.instagram.com/riddhi_mdt"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
-                title="Instagram"
-              >📷</a>
-              <a
-                href="https://www.linkedin.com/in/riddhi-mhadgut-3b0a21289/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
-                title="LinkedIn"
-              >💼</a>
-              <a
-                href="mailto:riddhimhadgut@gmail.com"
-                className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
-                title="Gmail"
-              >📧</a>
-              <a
-                href="https://github.com/RiddhiM170904"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
-                title="GitHub"
-              >👨‍💻</a>
-              <a
-                href="https://leetcode.com/u/Riddhi_Mhadgut/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg flex items-center justify-center text-white hover:bg-primary-500 hover:border-primary-500 transition-all duration-200 transform hover:scale-110"
-                title="LeetCode"
-              >🧩</a>
+            <div className="flex gap-3 mt-4">
+              {SOCIALS.map((s, i) => (
+                <motion.a
+                  key={i}
+                  href={s.href}
+                  target={s.href.startsWith('mailto') ? '_self' : '_blank'}
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-9 h-9 rounded-lg glass flex items-center justify-center text-gray-500 hover:text-primary-300 hover:border-primary-400/30 transition-all duration-300"
+                >
+                  <s.icon className="w-4 h-4" />
+                </motion.a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Nav links */}
           <div>
-            <h3 className="text-white font-semibold text-lg mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  {link.href.startsWith('#') ? (
-                    <button
-                      onClick={() => {
-                        const el = document.querySelector(link.href);
-                        if (el) {
-                          el.scrollIntoView({ behavior: 'smooth' });
-                        } else {
-                          window.location.hash = link.href;
-                        }
-                      }}
-                      className="text-gray-300 hover:text-primary-400 transition-colors duration-200 text-left"
-                    >
-                      {link.name}
-                    </button>
-                  ) : (
-                    <a
-                      href={link.href}
-                      className="text-gray-300 hover:text-primary-400 transition-colors duration-200 text-left"
-                    >
-                      {link.name}
-                    </a>
-                  )}
-                </li>
+            <h4 className="text-white font-semibold text-sm mb-4 font-mono">Navigation</h4>
+            <div className="grid grid-cols-2 gap-2">
+              {LINKS.map((l) => (
+                <button
+                  key={l.href}
+                  onClick={() => scrollTo(l.href)}
+                  className="text-left text-gray-500 text-sm hover:text-primary-300 transition-colors duration-200 py-0.5"
+                >
+                  {l.label}
+                </button>
               ))}
-            </ul>
+            </div>
           </div>
 
-          {/* Services */}
+          {/* Quick contact */}
           <div>
-            <h3 className="text-white font-semibold text-lg mb-6">Services</h3>
-            <ul className="space-y-3">
-              {services.map((service, index) => (
-                <li key={index}>
-                  <span className="text-gray-300 hover:text-primary-400 transition-colors duration-200 cursor-pointer">
-                    {service}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <h4 className="text-white font-semibold text-sm mb-4 font-mono">Quick Contact</h4>
+            <div className="space-y-2">
+              <a href="mailto:riddhimhadgut17@gmail.com" className="text-gray-500 text-sm hover:text-primary-300 transition-colors block">
+                riddhimhadgut17@gmail.com
+              </a>
+              <a href="tel:+919109356746" className="text-gray-500 text-sm hover:text-primary-300 transition-colors block">
+                +91 9109356746
+              </a>
+              <p className="text-gray-600 text-sm">Dewas, Madhya Pradesh, India</p>
+            </div>
+            <motion.a
+              href="/Riddhinew.pdf"
+              download
+              className="inline-flex items-center gap-2 mt-4 text-xs font-mono text-primary-300 border border-primary-400/30 px-3 py-1.5 rounded-lg hover:bg-primary-400/10 transition-all duration-200"
+              whileHover={{ scale: 1.04 }}
+            >
+              ↓ Download Resume
+            </motion.a>
           </div>
         </div>
 
-        
-
-        {/* Bottom Footer */}
-        <div className="py-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {currentYear} Riddhi Mhadgut. All rights reserved.
-          </div>
-          
-          <div className="flex items-center space-x-6">
-            <a href="/privacy-policy" className="text-gray-400 hover:text-primary-400 text-sm transition-colors duration-200">
-              Privacy Policy
-            </a>
-            <a href="/terms-of-service" className="text-gray-400 hover:text-primary-400 text-sm transition-colors duration-200">
-              Terms of Service
-            </a>
-            
-            {/* Back to Top Button */}
-            <button
-              onClick={scrollToTop}
-              className="w-8 h-8 bg-primary-500 hover:bg-primary-600 rounded-lg flex items-center justify-center text-white transition-all duration-200 transform hover:scale-110"
-              title="Back to Top"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-              </svg>
-            </button>
-          </div>
+        {/* Bottom bar */}
+        <div className="border-t border-white/8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p className="text-gray-600 text-xs font-mono">
+            © {new Date().getFullYear()} Riddhi Mhadgut. All rights reserved.
+          </p>
+          <p className="text-gray-700 text-xs font-mono flex items-center gap-1.5">
+            Made with <FaHeart className="text-primary-400 w-3 h-3" /> using React & TailwindCSS
+          </p>
         </div>
       </div>
     </footer>

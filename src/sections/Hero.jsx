@@ -1,216 +1,393 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { motion } from "framer-motion";
-import { FaInstagram, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
-import { SiLeetcode } from "react-icons/si";
+import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
+import { FiDownload, FiArrowRight } from 'react-icons/fi';
+import { FaTrophy, FaFileAlt } from 'react-icons/fa';
 
-const socialLinks = [
-  { name: "Instagram", icon: <FaInstagram />, href: "https://instagram.com/riddhi_mdt" },
-  { name: "LinkedIn", icon: <FaLinkedin />, href: "https://linkedin.com/in/riddhi-mhadgut-3b0a21289" },
-  { name: "GitHub", icon: <FaGithub />, href: "https://github.com/RiddhiM170904" },
-  { name: "LeetCode", icon: <SiLeetcode />, href: "https://leetcode.com/u/Riddhi_Mhadgut/" },
-  { name: "Email", icon: <FaEnvelope />, href: "mailto:riddhimhadgut17@gmail.com" },
+/* ── Typewriter ─────────────────────────────────────────────── */
+const ROLES = [
+  'Full-Stack Developer',
+  'AI / ML Engineer',
+  'React.js Specialist',
+  'SIH 2025 Runner-Up',
+  'Patent Holder',
+  'Open Source Contributor',
 ];
 
-const Hero = () => {
-  const [viewport, setViewport] = useState({ width: 0, height: 0 });
+const Typewriter = () => {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayed,  setDisplayed]  = useState('');
+  const [deleting,   setDeleting]   = useState(false);
 
-  // Set viewport after component mounts (avoids SSR/hydration errors)
   useEffect(() => {
-    setViewport({ width: window.innerWidth, height: window.innerHeight });
-
-    const handleResize = () => {
-      setViewport({ width: window.innerWidth, height: window.innerHeight });
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Pre-generate particle positions (to prevent jumping on every render)
-  const particles = useMemo(() => {
-    if (!viewport.width || !viewport.height) return [];
-    return [...Array(20)].map(() => ({
-      x: Math.random() * viewport.width,
-      y: Math.random() * viewport.height,
-      duration: Math.random() * 10 + 10,
-    }));
-  }, [viewport]);
-
-  const scrollToSection = (sectionId) => {
-    const id = sectionId.startsWith("#") ? sectionId.slice(1) : sectionId;
-    const element = document.getElementById(id);
-
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-      setTimeout(() => {
-        window.scrollTo({
-          top: element.offsetTop - 100,
-          behavior: "smooth",
-        });
-      }, 100);
-    } else {
-      console.error(`Element with ID "${id}" not found`);
+    const current = ROLES[roleIndex];
+    let t;
+    if (!deleting && displayed.length < current.length) {
+      t = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 75);
+    } else if (!deleting && displayed.length === current.length) {
+      t = setTimeout(() => setDeleting(true), 1800);
+    } else if (deleting && displayed.length > 0) {
+      t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 40);
+    } else if (deleting) {
+      setDeleting(false);
+      setRoleIndex((i) => (i + 1) % ROLES.length);
     }
-  };
-
-  const handleDownloadCV = () => {
-    try {
-      const link = document.createElement("a");
-      link.href = "/riddhinew.pdf";
-      link.download = "riddhinew.pdf";
-      link.style.display = "none";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error("Error downloading CV:", error);
-      window.open("/riddhinew.pdf", "_blank");
-    }
-  };
-
-  if (!viewport.width) return null; // Prevents rendering until viewport is ready
+    return () => clearTimeout(t);
+  }, [displayed, deleting, roleIndex]);
 
   return (
-    <section
-      id="home"
-      className="relative flex items-center justify-center min-h-screen overflow-hidden gradient-bg"
+    <span className="text-primary-300 font-mono">
+      {displayed}
+      <span className="cursor-blink text-primary-400">|</span>
+    </span>
+  );
+};
+
+/* ── Particle Canvas ────────────────────────────────────────── */
+const ParticleCanvas = () => {
+  const canvasRef = useRef(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let animId;
+    let W = canvas.width  = window.innerWidth;
+    let H = canvas.height = window.innerHeight;
+
+    const COLORS = ['#e879f9', '#a78bfa', '#fb7185'];
+    const pts = Array.from({ length: 50 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.5 + 0.3,
+      c: COLORS[Math.floor(Math.random() * COLORS.length)],
+    }));
+
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+      pts.forEach(p => {
+        p.x = (p.x + p.vx + W) % W;
+        p.y = (p.y + p.vy + H) % H;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.c + '60';
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = p.c;
+        ctx.fill();
+      });
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 110) {
+            ctx.beginPath();
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.strokeStyle = `rgba(232,121,249,${0.05 * (1 - d / 110)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      animId = requestAnimationFrame(draw);
+    };
+    draw();
+
+    const onResize = () => {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', onResize);
+    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', onResize); };
+  }, []);
+  return <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-50" />;
+};
+
+/* ── Social Link ─────────────────────────────────────────────── */
+const SocialLink = ({ href, icon: Icon, label, delay }) => (
+  <motion.a
+    href={href}
+    target={href.startsWith('mailto') ? '_self' : '_blank'}
+    rel="noopener noreferrer"
+    aria-label={label}
+    title={label}
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay }}
+    whileHover={{ scale: 1.2, y: -3 }}
+    whileTap={{ scale: 0.9 }}
+    className="w-10 h-10 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-primary-300 hover:border-primary-400/40 transition-all duration-300"
+  >
+    <Icon className="w-4 h-4" />
+  </motion.a>
+);
+
+/* ── Badge ───────────────────────────────────────────────────── */
+const Badge = ({ icon: Icon, text, color = 'primary', delay }) => {
+  const cls = color === 'primary'
+    ? 'bg-primary-400/10 border-primary-400/30 text-primary-300'
+    : 'bg-amber-400/10 border-amber-400/30 text-amber-300';
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay, type: 'spring', stiffness: 120 }}
+      className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono border ${cls}`}
     >
-      {/* Background Particles */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {particles.map((p, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 rounded-full bg-primary-400/30"
-            initial={{ x: p.x, y: p.y, scale: 0 }}
-            animate={{ x: Math.random() * viewport.width, y: Math.random() * viewport.height, scale: [0, 1, 0] }}
-            transition={{ duration: p.duration, repeat: Infinity, ease: "linear" }}
-            style={{ pointerEvents: "none" }}
-          />
-        ))}
+      <Icon className="w-3 h-3" />
+      {text}
+    </motion.div>
+  );
+};
+
+/* ── Hero ───────────────────────────────────────────────────── */
+const Hero = () => {
+  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+
+  return (
+    <section id="home" className="relative flex items-center min-h-screen overflow-hidden bg-dark-900">
+      {/* Ambient background */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary-500/10 rounded-full blur-[120px]" />
+        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[120px]" style={{ animation: 'float 12s ease-in-out infinite' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-rose-500/4 rounded-full blur-[150px]" />
+        <div className="absolute inset-0 bg-grid opacity-100" />
       </div>
 
-      {/* Decorative blobs */}
-      <motion.div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
-        <motion.div
-          className="absolute rounded-full -top-40 -right-40 w-80 h-80 bg-primary-500/20 blur-3xl"
-          animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute rounded-full -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute rounded-full top-20 left-20 w-60 h-60 bg-pink-500/10 blur-2xl"
-          animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
+      <ParticleCanvas />
 
-      {/* Main Content */}
-      <div className="relative z-10 px-4 py-20 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Left Content */}
-          <motion.div className="text-center lg:text-left" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
-            <div className="mb-6">
-              <p className="mb-2 text-lg font-medium text-primary-400">Aiming for the Moon, You will achieve stars 🪄💫</p>
-              <p className="mb-2 text-lg font-medium text-primary-400">WELCOME TO MY WORLD ✨</p>
-              <h1 className="mb-4 text-4xl font-bold md:text-6xl">
-                Hi, I'm <span className="text-primary-400">Riddhi Mhadgut</span>
-              </h1>
-              <div className="mb-6 text-4xl font-bold md:text-6xl">
-                <span className="text-primary-400">Web</span>{" "}
-                <span className="text-white">Developer</span>
-              </div>
-              <p className="max-w-2xl text-lg leading-relaxed text-gray-300">
-                Passionate about technology and programming, I'm on a journey to sharpen my skills and explore the vast world of computer science.
-                Currently, I am delving into web development and aim to create meaningful and innovative solutions through coding.
-              </p>
-            </div>
 
-            {/* Buttons */}
-            <motion.div className="flex flex-col justify-center gap-4 mb-8 sm:flex-row lg:justify-start" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}>
-              <motion.button
-                aria-label="Go to my projects section"
-                onClick={() => scrollToSection("projects")}
-                className="px-8 py-3 font-medium transition-all duration-200 bg-white rounded-full text-dark-900 hover:bg-gray-100"
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(255,255,255,0.2)" }}
-                whileTap={{ scale: 0.95 }}
-              >
-                My Projects
-              </motion.button>
-              <motion.button
-                aria-label="Download my CV"
-                onClick={handleDownloadCV}
-                className="px-8 py-3 font-medium text-white transition-all duration-200 border rounded-full border-white/30 hover:bg-white/10"
-                whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.6)" }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Download CV
-              </motion.button>
+          {/* ── Left ── */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+            className="space-y-6 order-2 lg:order-1"
+          >
+            {/* Badges */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="flex flex-wrap gap-2"
+            >
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-xs font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Available for Opportunities
+              </div>
+              <Badge icon={FaTrophy}  text="SIH 2025 Runner-Up"  color="primary" delay={0.2} />
+              <Badge icon={FaFileAlt} text="Patent Holder"        color="amber"   delay={0.35} />
             </motion.div>
 
-            {/* Social Links */}
-            <motion.div className="flex justify-center gap-4 lg:justify-start" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }}>
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  target={social.href.startsWith("mailto:") ? "_self" : "_blank"}
-                  rel={social.href.startsWith("mailto:") ? "" : "noopener noreferrer"}
-                  aria-label={social.name}
-                  className="flex items-center justify-center w-12 h-12 text-white transition-all duration-200 border rounded-full bg-white/10 backdrop-blur-lg border-white/20 hover:bg-white/20"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+            {/* Greeting + Name */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            >
+              <p className="section-label mb-2">Hello World 👋</p>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+                I'm{' '}
+                <span className="gradient-text text-glow-primary">Riddhi</span>
+              </h1>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-white mt-1">
+                Mhadgut
+              </h2>
+            </motion.div>
+
+            {/* Typewriter */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="text-xl md:text-2xl font-mono h-8"
+            >
+              <Typewriter />
+            </motion.div>
+
+            {/* Summary */}
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="text-gray-400 text-base leading-relaxed max-w-lg border-l-2 border-primary-400/40 pl-4"
+            >
+              B.Tech CSE @ VIT Bhopal (<span className="text-primary-300 font-semibold">CGPA 9.07</span>). Shipped{' '}
+              <span className="text-primary-300 font-semibold">11+</span> production apps using React.js, Node.js, Python &
+              TensorFlow. Published Patent holder & SIH 2025 National Runner-Up.{' '}
+              <span className="text-primary-300 font-semibold">380+</span> LeetCode problems (Rating: 1513).
+            </motion.p>
+
+            {/* Tech pills */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="flex flex-wrap gap-2"
+            >
+              {['React.js', 'Next.js', 'Node.js', 'Python', 'TensorFlow', 'OpenCV', 'MongoDB', 'Azure'].map((t, i) => (
+                <motion.span
+                  key={t}
+                  whileHover={{ scale: 1.06, y: -2 }}
+                  className="chip text-[11px]"
+                  style={{ animationDelay: `${i * 50}ms` }}
                 >
-                  {social.icon}
-                </motion.a>
+                  {t}
+                </motion.span>
               ))}
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="flex flex-wrap gap-4"
+            >
+              <motion.button
+                onClick={() => scrollTo('projects')}
+                className="btn-primary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                View Projects <FiArrowRight className="w-4 h-4" />
+              </motion.button>
+              <motion.a
+                href="/Riddhinew.pdf"
+                download
+                className="btn-outline"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiDownload className="w-4 h-4" /> Download Resume
+              </motion.a>
+            </motion.div>
+
+            {/* Socials */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="flex items-center gap-3"
+            >
+              <span className="text-xs text-gray-600 font-mono tracking-wider">FIND ME</span>
+              <div className="h-px w-8 bg-gray-700" />
+              <SocialLink href="https://github.com/RiddhiM170904"                     icon={FaGithub}    label="GitHub"    delay={0.9} />
+              <SocialLink href="https://linkedin.com/in/riddhi-mhadgut-3b0a21289"    icon={FaLinkedin}  label="LinkedIn"  delay={1.0} />
+              <SocialLink href="https://instagram.com/riddhi_mdt"                    icon={FaInstagram} label="Instagram" delay={1.1} />
+              <SocialLink href="https://leetcode.com/u/Riddhi_Mhadgut/"              icon={SiLeetcode}  label="LeetCode"  delay={1.2} />
+              <SocialLink href="mailto:riddhimhadgut17@gmail.com"                    icon={FaEnvelope}  label="Email"     delay={1.3} />
             </motion.div>
           </motion.div>
 
-          {/* Right Content - Profile Image */}
-          <motion.div className="relative flex justify-center lg:justify-end" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
-            <div className="relative">
-              <motion.div className="relative flex items-center justify-center overflow-hidden rounded-full w-80 h-80 md:w-96 md:h-96 bg-gradient-to-br from-primary-500/20 to-purple-600/20" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-                <motion.div className="relative overflow-hidden border-4 rounded-full w-72 h-72 md:w-88 md:h-88 border-primary-400/50" initial={{ scale: 0.8 }} animate={{ scale: 1 }} transition={{ duration: 0.8, delay: 0.6 }}>
-                  <img
-                    src="/profile.png"
-                    alt="Portrait of Riddhi Mhadgut, Web Developer"
-                    className="object-cover w-full h-full"
-                    onError={(e) => {
-                      e.target.style.display = "none";
-                      e.target.nextElementSibling.style.display = "flex";
+          {/* ── Right: Profile ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.7, type: 'spring' }}
+            className="relative flex justify-center order-1 lg:order-2"
+          >
+            <div className="relative w-72 h-72 md:w-[360px] md:h-[360px]">
+              {/* Outer glow */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-500/20 to-violet-600/10 blur-3xl" />
+
+              {/* Rotating rings */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+                className="absolute inset-2 rounded-full border-2 border-dashed border-primary-400/30"
+              />
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+                className="absolute inset-8 rounded-full border border-dotted border-violet-400/25"
+              />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+                className="absolute -inset-4 rounded-full border border-dashed border-rose-400/15"
+              />
+
+              {/* Orbit dots — primary */}
+              {[0, 72, 144, 216, 288].map((deg, i) => (
+                <motion.div
+                  key={i}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+                  className="absolute inset-2 rounded-full"
+                  style={{ transformOrigin: '50% 50%' }}
+                >
+                  <div
+                    className="absolute w-2 h-2 rounded-full bg-primary-400 shadow-[0_0_8px_#e879f9]"
+                    style={{
+                      top: '50%', left: '50%',
+                      transform: `rotate(${deg}deg) translateY(-${138}px) translateX(-50%)`,
                     }}
                   />
-                  <div className="flex items-center justify-center w-full h-full text-6xl font-bold text-white bg-gradient-to-br from-primary-400 to-purple-500" style={{ display: "none" }}>
-                    R
-                  </div>
                 </motion.div>
+              ))}
 
-                {/* Floating decorations */}
-                <motion.div className="absolute w-8 h-8 rounded-lg -top-4 -left-4 bg-primary-400" animate={{ y: [0, -10, 0], rotate: [0, 180, 360] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} />
-                <motion.div className="absolute w-6 h-6 bg-purple-400 rounded-full -top-8 right-8" animate={{ y: [0, -15, 0], x: [0, 10, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }} />
-                <motion.div className="absolute w-10 h-10 bg-pink-400 rounded-lg -bottom-4 -right-4" animate={{ y: [0, 10, 0], rotate: [0, -180, -360] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }} />
-                <motion.div className="absolute w-4 h-4 bg-yellow-400 rounded-full bottom-8 -left-8" animate={{ y: [0, -20, 0], x: [0, -10, 0], scale: [1, 1.5, 1] }} transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }} />
+              {/* Orbit dots — violet */}
+              {[36, 108, 180, 252, 324].map((deg, i) => (
+                <motion.div
+                  key={i}
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+                  className="absolute inset-8 rounded-full"
+                  style={{ transformOrigin: '50% 50%' }}
+                >
+                  <div
+                    className="absolute w-1.5 h-1.5 rounded-full bg-violet-400 shadow-[0_0_6px_#a78bfa]"
+                    style={{
+                      top: '50%', left: '50%',
+                      transform: `rotate(${deg}deg) translateY(-${100}px) translateX(-50%)`,
+                    }}
+                  />
+                </motion.div>
+              ))}
+
+              {/* Profile image */}
+              <div className="absolute inset-10 rounded-full overflow-hidden border-2 border-primary-400/40 bg-gradient-to-br from-primary-500/10 to-violet-600/10 shadow-[0_0_40px_rgba(232,121,249,0.25)]">
+                <img
+                  src="/profile.png"
+                  alt="Riddhi Mhadgut"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+
+              {/* Stat chips */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.2 }}
+                className="absolute -right-6 top-1/4 glass px-3 py-1.5 text-xs font-mono rounded-xl"
+              >
+                <span className="text-primary-300 font-bold">9.07</span>
+                <span className="text-gray-400"> CGPA</span>
               </motion.div>
-
-              <motion.div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500/30 to-purple-500/30 blur-xl" animate={{ opacity: [0.3, 0.8, 0.3], scale: [1, 1.1, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.4 }}
+                className="absolute -left-6 bottom-1/4 glass px-3 py-1.5 text-xs font-mono rounded-xl"
+              >
+                <span className="text-violet-300 font-bold">380+</span>
+                <span className="text-gray-400"> LeetCode</span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.6 }}
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 glass px-3 py-1.5 text-xs font-mono rounded-xl"
+              >
+                <span className="text-rose-300 font-bold">11+</span>
+                <span className="text-gray-400"> Projects</span>
+              </motion.div>
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div className="absolute z-20 transform -translate-x-1/2 cursor-pointer bottom-8 left-1/2" onClick={() => scrollToSection("projects")} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.2 }}>
-          <motion.div className="flex items-center justify-center w-12 h-12 transition-colors duration-200 border rounded-full border-white/30 hover:border-primary-400" animate={{ y: [0, -5, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
-            <motion.svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" animate={{ y: [0, 3, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </motion.svg>
-          </motion.div>
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+        >
+          <span className="text-[10px] tracking-[0.25em] text-gray-600 font-mono uppercase">scroll</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-px h-8 bg-gradient-to-b from-primary-400/60 to-transparent"
+          />
         </motion.div>
       </div>
     </section>
