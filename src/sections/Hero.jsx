@@ -243,8 +243,8 @@ const Hero = () => {
                 View Projects <FiArrowRight className="w-4 h-4" />
               </motion.button>
               <motion.a
-                href="/Riddhinew.pdf"
-                download
+                href="/riddhinew.pdf"
+                download="Riddhi_Resume.pdf"
                 className="btn-outline"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

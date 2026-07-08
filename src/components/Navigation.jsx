@@ -99,8 +99,8 @@ const Navigation = () => {
             {/* CTA */}
             <div className="hidden md:flex items-center gap-3">
               <motion.a
-                href="/Riddhinew.pdf"
-                download
+                href="/riddhinew.pdf"
+                download="Riddhi_Resume.pdf"
                 className="btn-primary text-xs px-4 py-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -150,7 +150,7 @@ const Navigation = () => {
                 </motion.a>
               ))}
               <div className="pt-2">
-                <a href="/Riddhinew.pdf" download className="btn-primary w-full justify-center text-sm">
+                <a href="/riddhinew.pdf" download="Riddhi_Resume.pdf" className="btn-primary w-full justify-center text-sm">
                   <FiDownload className="w-4 h-4" /> Download Resume
                 </a>
               </div>
