@@ -36,7 +36,7 @@ const projects = [
     tech: ['React.js', 'Tailwind CSS', 'AI Agents', 'Agentic AI'],
     github: '',
     live: 'https://simhastha-netra.vercel.app/',
-    image: '/projects/netra.png',
+    image: '/projects/simhastha.png',
     badge: '🏆 Top 25 Performer',
     accent: '#8b5cf6',
 },
