@@ -29,6 +29,18 @@ const projects = [
     accent: '#f59e0b',
   },
   {
+    title: 'Simhastha Netra',
+    role: 'AI Agent Development | Full Stack',
+    type: 'Top 25 Performer · Mahakumbh Innovation Hackathon 2028',
+    description: 'Developed an agentic command center for Simhastha 2028 in Ujjain to enable intelligent crowd and event management. Built AI-powered workflows for incident triage, predictive crowd-surge alerts, real-time coordination, and one-click emergency dispatch, with a mobile-first dashboard for efficient event operations.',
+    tech: ['React.js', 'Tailwind CSS', 'AI Agents', 'Agentic AI'],
+    github: '',
+    live: 'https://simhastha-netra.vercel.app/',
+    image: '/projects/simhastha.png',
+    badge: '🏆 Top 25 Performer',
+    accent: '#8b5cf6',
+},
+  {
     title: 'Samvidhan Path',
     role: 'Frontend & Backend Developer',
     type: 'Group Project | Civic Education Platform',
