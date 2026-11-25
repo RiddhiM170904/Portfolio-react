@@ -164,7 +164,7 @@ const About = ({ standalone = false }) => {
   const education = [
     {
       degree: 'B.Tech Computer Science',
-      institution: 'VIT Bhopal University',
+      institution: 'Vellore Institute of Technology',
       duration: 'Aug 2023 – Present',
       grade: 'CGPA: 9.11',
       icon: '🎓', color: '#e879f9',
