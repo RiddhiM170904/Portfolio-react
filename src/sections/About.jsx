@@ -166,7 +166,7 @@ const About = ({ standalone = false }) => {
       degree: 'B.Tech Computer Science',
       institution: 'VIT Bhopal University',
       duration: 'Aug 2023 – Present',
-      grade: 'CGPA: 9.07',
+      grade: 'CGPA: 9.11',
       icon: '🎓', color: '#e879f9',
       coursework: ['DSA', 'OOP', 'OS', 'DBMS', 'Computer Networks', 'System Design'],
     },
